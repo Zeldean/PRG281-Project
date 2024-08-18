@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\deanv\\OneDrive - belgiumcampus.ac.za\\BC\\2nd Year\\PRG 281\\Code\\Project\\Project\\Project.csproj",
+      "projectUniqueName": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Project.csproj",
       "projectName": "Project",
-      "projectPath": "C:\\Users\\deanv\\OneDrive - belgiumcampus.ac.za\\BC\\2nd Year\\PRG 281\\Code\\Project\\Project\\Project.csproj",
+      "projectPath": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Project.csproj",
       "packagesPath": "C:\\Users\\deanv\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\deanv\\OneDrive - belgiumcampus.ac.za\\BC\\2nd Year\\PRG 281\\Code\\Project\\Project\\obj\\",
+      "outputPath": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\deanv\\AppData\\Roaming\\NuGet\\NuGet.Config",

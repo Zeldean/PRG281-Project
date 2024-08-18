@@ -72,22 +72,4 @@ Prepaid electricity users often struggle to keep track of their remaining units 
 
 ## Flowchart or Pseudocode
 ### Flowchart
-![Flowchart Image](link_to_flowchart_diagram)
-
-### Pseudocode
-```plaintext
-Start
-Check if user file exists:
-    If not, prompt user to create a new profile
-User selects:
-    - Add user
-    - Select user
-    - Exit program
-User selects:
-    - New entry:
-        - Enter current units
-        - Enter units purchased
-    - View history
-    - Settings
-    - Exit
-End
+![Flowchart Image](FlowChart_1.svg)
