@@ -1,0 +1,65 @@
+﻿using FileStorage;
+using Navigation;
+
+class Program
+{
+    static void Main()
+    {
+        string directoryPath = "UserFiles";
+        Dictionary<string, string> userFiles = new Dictionary<string, string>();
+        User user = new User(directoryPath);
+
+        user.UserStorageExists(); // Check if user storage exists; if not, creates it.
+        user.UserExists(); // Check if user files exist; if not, prompt user to create one.
+        userFiles = user.UserList();
+
+        DisplayUserSelectionMenu(userFiles, user);
+    }
+
+    static void DisplayUserSelectionMenu(Dictionary<string, string> userFiles, User user)
+    {
+        Menu selectUser = new Menu("Select User");
+        UserList(userFiles, selectUser, user);
+        selectUser.Display();
+    }
+
+    static void UserList(Dictionary<string, string> userFiles, Menu selectUser, User user)
+    {
+        selectUser.AddItem("Add User", () =>
+        {
+            user.CreateUser();
+            userFiles = user.UserList(); // Update the dictionary after a new user is created.
+            DisplayUserSelectionMenu(userFiles, user); // Rebuild the menu with the updated user list.
+        });
+
+        foreach (var userFile in userFiles)
+        {
+            selectUser.AddItem(userFile.Key, () =>
+            {
+                Menu userItem = new Menu(userFile.Key);
+                userItem.AddItem("New Entry", () =>
+                {
+                    Menu entry = new Menu("Entries");
+                    entry.AddItem("Current Units", () =>
+                    {
+                        // Logic to handle "Current Units" entry
+                    });
+                    entry.AddItem("Units Purchased", () =>
+                    {
+                        // Logic to handle "Units Purchased" entry
+                    });
+                    entry.Display();
+                });
+
+                userItem.AddItem("View History", () =>
+                {
+                    // Logic to display user’s history
+                });
+
+                userItem.Display();
+            });
+        }
+
+        selectUser.AddItem("End", () => { Environment.Exit(0); });
+    }
+}
