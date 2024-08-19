@@ -88,7 +88,7 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                         Entry NewEntry = new Entry();
                         NewEntry.CurentUnits(date, unitsPurchased, type2);
                         
-                        string EntryText = "ENTRIES \n("+ NewEntry.EntryDate.ToString()+"),"+NewEntry.EntryUnits.ToString() + "," + NewEntry.EntryType.ToString();
+                        string EntryText = "("+ NewEntry.EntryDate.ToString()+"),"+NewEntry.EntryUnits.ToString() + "," + NewEntry.EntryType.ToString();
                         Console.WriteLine("================================================================");
                         string fileP = user.FilePath; // Gets file path
 
@@ -105,7 +105,7 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
 
                         Console.ReadLine();
                     });
-                    entry.AddItem("Back", () => { DisplayUserSelectionMenu(userFiles, user); });
+                    entry.AddItem("Back", userItem.Display);
                     entry.Display();
                 });
 
@@ -174,10 +174,11 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                         {
                             //user.ExportData();
                         });
+                        dataManagement.Display();
                     });
                     settings.AddItem("Notifications", () =>
                     {
-                        // Logic to genarate a Mounthly report
+                        // Logic for changing notification settings
                     });
                     settings.AddItem("Exit Settings", userItem.Display );
                     settings.Display();

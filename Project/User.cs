@@ -105,8 +105,8 @@ namespace FileStorage
                     Console.WriteLine("User name can't be blank. Press any key to try again.");
                     Console.ReadKey(); // Wait for user input before continuing
                 }
-                File.AppendAllText(FilePath, Password + Environment.NewLine);
-                File.AppendAllText(FilePath, "ENTRIES" + Environment.NewLine);
+                
+
             }
 
             // Create the file path using the username
@@ -123,6 +123,8 @@ namespace FileStorage
             {
                 Console.WriteLine($"A file for '{userName}' already exists. Please choose another name.");
             }
+            File.AppendAllText(filePath, Password + Environment.NewLine);
+            File.AppendAllText(filePath, "ENTRIES" + Environment.NewLine);
         }
         /// <summary>
         /// Clears all data lines in a file, starting from the line that contains the word "ENTRIES".
@@ -144,6 +146,7 @@ namespace FileStorage
                 }
             }
             File.WriteAllLines(filePath, lines);
+            Console.WriteLine("All data was cleard. Press Enter to continue.");
         }
     }
 
