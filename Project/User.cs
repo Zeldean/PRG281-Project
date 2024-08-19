@@ -96,6 +96,17 @@ namespace FileStorage
                     Console.WriteLine("User name can't be blank. Press any key to try again.");
                     Console.ReadKey(); // Wait for user input before continuing
                 }
+                if (!string.IsNullOrWhiteSpace(Password)) // Check that the username is not blank or whitespace
+                {
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("User name can't be blank. Press any key to try again.");
+                    Console.ReadKey(); // Wait for user input before continuing
+                }
+                File.AppendAllText(FilePath, Password + Environment.NewLine);
+                File.AppendAllText(FilePath, "ENTRIES" + Environment.NewLine);
             }
 
             // Create the file path using the username
@@ -112,6 +123,27 @@ namespace FileStorage
             {
                 Console.WriteLine($"A file for '{userName}' already exists. Please choose another name.");
             }
+        }
+        /// <summary>
+        /// Clears all data lines in a file, starting from the line that contains the word "ENTRIES".
+        /// </summary>
+        /// <param name="filePath">The path to the file to be cleared.</param>
+        public void ClearData()
+        {
+            string[] lines = File.ReadAllLines(FilePath);
+            bool dataStarted = false;
+            for (int index = 0; index < lines.Length; index++)
+            {
+                if (lines[index] == "ENTRIES")
+                {
+                    dataStarted = true;
+                }
+                else if (dataStarted)
+                {
+                    lines[index] = "";
+                }
+            }
+            File.WriteAllLines(filePath, lines);
         }
     }
 
@@ -133,27 +165,57 @@ namespace FileStorage
             EntryType = type;
             EntryDate = date;
         }
-        public List<Entry> ReadEntries(string filePath)
+        
+        public List<String> ReadEntries(string filePath)
         {
-            List<Entry> entries = new List<Entry>();
-    
-            // Logic to read entries from file
-            // For example:
-            string[] lines = File.ReadAllLines(filePath);
-            bool data =false;
-            foreach (string line in lines)
+            List<String> entries = new List<String>(); 
+            List<String> Fulltxt = new List<String>();
+ 
+            Fulltxt = File.ReadAllLines(filePath).ToList();
+ 
+            string toBeSearched = ",";
+ 
+            bool data = false;
+            foreach (string line in Fulltxt)
             {
-            if (data == true)
+                if (data)
                 {
-                    // Logic to read entry
+                    string Seper = line.Substring(line.IndexOf(toBeSearched) + toBeSearched.Length, 4);
+                    entries.Add(line);
                 }
-            else if(line == "ENTRIES") 
+                else if(line == "ENTRIES") 
                 {
                     data = true;
                 }
             }
-    
+ 
             return entries;
+        }
+ 
+        public List<String> ReadUnits(string filePath)
+        {
+            List<String> Units = new List<String>();
+            List<String> Fulltxt = new List<String>();
+ 
+            Fulltxt = File.ReadAllLines(filePath).ToList();
+ 
+            string toBeSearched = ",";
+ 
+            bool data = false;
+            foreach (string line in Fulltxt)
+            {
+                if (data)
+                {
+                    string Seper = line.Substring(line.IndexOf(toBeSearched) + toBeSearched.Length, 4);              
+                    Units.Add(Seper);
+ 
+                }
+                else if (line == "ENTRIES")
+                {
+                    data = true;
+                }
+            }
+            return Units;
         }
     }
 }

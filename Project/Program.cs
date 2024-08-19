@@ -114,6 +114,27 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                     // Logic to display user’s history
                     Console.Clear();
                     Console.WriteLine("History");
+                    // Logic to display user’s history
+                    FileStorage.Entry Ent = new Entry();
+                    FileStorage.Entry Units = new Entry();
+ 
+                    Ent.ReadEntries(user.FilePath);
+ 
+                    List<String> entries = Ent.ReadEntries(user.FilePath);
+ 
+                    foreach (string line in entries)
+                    {
+                        Console.WriteLine(line);
+                    }
+ 
+                    Units.ReadEntries(user.FilePath);
+ 
+                    List<String> iUnits = Ent.ReadEntries(user.FilePath);
+                    foreach (string line in iUnits)
+                    {
+                        Console.WriteLine(line); 
+                    }
+                    
                     Console.ReadKey();
                     userItem.Display();
                 });
@@ -143,7 +164,7 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                         Menu dataManagement = new Menu("Data Management");
                         dataManagement.AddItem("Clear Data", () =>
                         {
-                            //user.ClearData();
+                            user.ClearData();
                         });
                         dataManagement.AddItem("Import", () =>
                         {
