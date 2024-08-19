@@ -45,11 +45,65 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                     Menu entry = new Menu("Entries");
                     entry.AddItem("Current Units", () =>
                     {
-                        // Logic to handle "Current Units" entry
+                        Console.WriteLine("================================================================");
+
+                        Console.WriteLine("Please Enter Current number of units"); //gets the current number of units from user.
+                        int units = Convert.ToInt32(Console.ReadLine());
+
+                        DateOnly date = DateOnly.FromDateTime(DateTime.Now); //  gets the current date
+
+                        const string type1 = "Type 1";  // sets entry to type1
+
+                        Entry NewEntry = new Entry();
+                        NewEntry.CurentUnits(date,units, type1);
+
+                        string EntryText="("+NewEntry.EntryDate.ToString()+"),"+NewEntry.EntryUnits.ToString()+","+NewEntry.EntryType.ToString(); // creates the string that will be used as a entry.
+
+                        string fileP = user.FilePath; // Gets file path
+
+                        List<string> lines = new List<string>();
+                        lines = File.ReadAllLines(fileP).ToList(); // reads the texts on the text file.
+                        lines.Add(EntryText);             //Adds text to a text file.
+                        File.WriteAllLines(fileP, lines); //Adds text to a text file.
+
+                        foreach (String line in lines)
+                        {
+                            Console.WriteLine(line); // loops through all of the text lines on the text file and displays it on the console.
+                        }
+                       
+                        Console.ReadLine();
+
                     });
                     entry.AddItem("Units Purchased", () =>
                     {
-                        // Logic to handle "Units Purchased" entry
+                        Console.WriteLine("================================================================");
+
+                        Console.WriteLine("Please Enter the number of units that you have purchase:"); //gets the current number of units from user.
+                        int unitsPurchased = Convert.ToInt32(Console.ReadLine());
+
+                        DateOnly date = DateOnly.FromDateTime(DateTime.Now); //  gets the current date
+
+                        const string type2 = "Type 2";  // sets entry to type1
+
+                        Entry NewEntry = new Entry();
+                        NewEntry.CurentUnits(date, unitsPurchased, type2);
+                        
+                        string EntryText = "ENTRIES \n("+ NewEntry.EntryDate.ToString()+"),"+NewEntry.EntryUnits.ToString() + "," + NewEntry.EntryType.ToString();
+                        Console.WriteLine("================================================================");
+                        string fileP = user.FilePath; // Gets file path
+
+                        List<string> lines = new List<string>();
+                        lines = File.ReadAllLines(fileP).ToList(); // reads the texts on the text file.
+                        lines.Add(EntryText);   //Adds text to a text file.
+                        File.WriteAllLines(fileP, lines); //Adds text to a text file.
+                        Console.Clear();
+                        foreach (String line in lines)
+                        {
+                            Console.WriteLine(line); // loops through all of the text lines on the text file and displays it on the console.
+                        }
+
+
+                        Console.ReadLine();
                     });
                     entry.AddItem("Back", () => { DisplayUserSelectionMenu(userFiles, user); });
                     entry.Display();

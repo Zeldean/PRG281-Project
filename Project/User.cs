@@ -119,20 +119,19 @@ namespace FileStorage
 
     class Entry
     {
-        private DateTime entryDate;
+        private DateOnly entryDate;
         private string entryType;
         private int entryUnits;
-        
 
-        public DateTime EntryDate { get => entryDate; set => entryDate = value; }
+        public DateOnly EntryDate { get => entryDate; set => entryDate = value; }
         public string EntryType { get => entryType; set => entryType = value; }
         public int EntryUnits { get => entryUnits; set => entryUnits = value; }
 
-        public void CurentUnits(int units, string type)
+        public void CurentUnits(DateOnly date,int units, string type)
         {
             EntryUnits = units;
             EntryType = type;
-            EntryDate = DateTime.Now;
+            EntryDate = date;
         }
         public List<Entry> ReadEntries(string filePath)
         {
