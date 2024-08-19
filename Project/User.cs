@@ -125,7 +125,7 @@ namespace FileStorage
         {
             EntryUnits = units;
             EntryType = type;
-            EntryDate = DateTime.Now;
+            EntryDate = ;
         }
     }
 }
