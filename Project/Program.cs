@@ -1,9 +1,10 @@
-﻿using FileStorage;
+﻿using System.Reflection.Metadata.Ecma335;
+using FileStorage;
 using Navigation;
 
 class Program
 {
-    static void Main()
+static void Main()
     {
         string directoryPath = "UserFiles";
         Dictionary<string, string> userFiles = new Dictionary<string, string>();
@@ -16,14 +17,14 @@ class Program
         DisplayUserSelectionMenu(userFiles, user);
     }
 
-    static void DisplayUserSelectionMenu(Dictionary<string, string> userFiles, User user)
+static void DisplayUserSelectionMenu(Dictionary<string, string> userFiles, User user)
     {
         Menu selectUser = new Menu("Select User");
         UserListDisplay(userFiles, selectUser, user);
         selectUser.Display();
     }
 
-    static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUser, User user) // File name without extension, File path
+static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUser, User user) // File name without extension, File path
     {
         selectUser.AddItem("Add User", () =>
         {
@@ -37,20 +38,17 @@ class Program
             selectUser.AddItem(userFile.Key, () =>
             {
                 user.UserName = userFile.Key;
+                user.FilePath = userFile.Value;
                 Menu userItem = new Menu(userFile.Key);
                 userItem.AddItem("New Entry", () =>
                 {
                     Menu entry = new Menu("Entries");
                     entry.AddItem("Current Units", () =>
                     {
-                        Entry newEntry = new Entry(1);
-                        newEntry.AddEntry();
                         // Logic to handle "Current Units" entry
                     });
                     entry.AddItem("Units Purchased", () =>
                     {
-                        Entry newEntry = new Entry(2);
-                        newEntry.AddEntry();
                         // Logic to handle "Units Purchased" entry
                     });
                     entry.AddItem("Back", () => { DisplayUserSelectionMenu(userFiles, user); });
@@ -68,4 +66,26 @@ class Program
 
         selectUser.AddItem("End", () => { Environment.Exit(0); });
     }
+public List<Entry> ReadEntries(string filePath)
+{
+    List<Entry> entries = new List<Entry>();
+    
+    // Logic to read entries from file
+    // For example:
+    string[] lines = File.ReadAllLines(filePath);
+    bool data =false;
+    foreach (string line in lines)
+    {
+        if (data == true)
+        {
+            // Logic to read entry
+        }
+        else if(line == "ENTRIES") 
+        {
+            data = true;
+        }
+    }
+    
+    return entries;
+}
 }

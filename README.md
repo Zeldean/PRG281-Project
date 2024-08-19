@@ -72,4 +72,4 @@ Prepaid electricity users often struggle to keep track of their remaining units 
 
 ## Flowchart or Pseudocode
 ### Flowchart
-![Flowchart Image](./Project/bin/Debug/net8.0/New folder/FlowChart_1.svg)
+![Flowchart Image](Project/bin/Debug/net8.0/Media/FlowChart_1.svg)

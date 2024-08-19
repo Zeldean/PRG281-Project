@@ -27,13 +27,14 @@ namespace FileStorage
         private string? userName;
         private string? password;
         private string? filePath;
-        private List<Entry>? entries;
         private string? directoryPath;
+        
 
         // Encapsulation
         public string DirectoryPath { get => directoryPath; set => directoryPath = value; }
         public string FilePath { get => filePath; set => filePath = value; }
         public string UserName { get => userName; set => userName = value; }
+        public string? Password { get => password; set => password = value; }
 
         // Constructor
         public User(string directoryPath)
@@ -76,14 +77,17 @@ namespace FileStorage
         }       
         public void CreateUser()
         {
-            string userName;
+            
             while (true)
             {
                 Console.Clear();
                 Console.WriteLine("Enter a User name:");
-                userName = Console.ReadLine();
+                UserName = Console.ReadLine();
 
-                if (!string.IsNullOrWhiteSpace(userName)) // Check that the username is not blank or whitespace
+                Console.WriteLine("Enter Meter code:");
+                Password = Console.ReadLine();
+
+                if (!string.IsNullOrWhiteSpace(UserName)) // Check that the username is not blank or whitespace
                 {
                     break;
                 }
@@ -95,7 +99,7 @@ namespace FileStorage
             }
 
             // Create the file path using the username
-            string fileName = userName + ".txt"; // Add an extension to the filename
+            string fileName = UserName + ".txt"; // Add an extension to the filename
             string filePath = Path.Combine(DirectoryPath, fileName);
 
             // Check if the file already exists
@@ -111,11 +115,14 @@ namespace FileStorage
         }
     }
 
+    
+
     class Entry
     {
         private DateTime entryDate;
         private string entryType;
         private int entryUnits;
+        
 
         public DateTime EntryDate { get => entryDate; set => entryDate = value; }
         public string EntryType { get => entryType; set => entryType = value; }
@@ -125,7 +132,7 @@ namespace FileStorage
         {
             EntryUnits = units;
             EntryType = type;
-            EntryDate = ;
+            EntryDate = DateTime.Now;
         }
     }
 }
