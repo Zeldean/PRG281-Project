@@ -134,5 +134,27 @@ namespace FileStorage
             EntryType = type;
             EntryDate = DateTime.Now;
         }
+        public List<Entry> ReadEntries(string filePath)
+        {
+            List<Entry> entries = new List<Entry>();
+    
+            // Logic to read entries from file
+            // For example:
+            string[] lines = File.ReadAllLines(filePath);
+            bool data =false;
+            foreach (string line in lines)
+            {
+            if (data == true)
+                {
+                    // Logic to read entry
+                }
+            else if(line == "ENTRIES") 
+                {
+                    data = true;
+                }
+            }
+    
+            return entries;
+        }
     }
 }

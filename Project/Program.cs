@@ -66,26 +66,4 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
 
         selectUser.AddItem("End", () => { Environment.Exit(0); });
     }
-public List<Entry> ReadEntries(string filePath)
-{
-    List<Entry> entries = new List<Entry>();
-    
-    // Logic to read entries from file
-    // For example:
-    string[] lines = File.ReadAllLines(filePath);
-    bool data =false;
-    foreach (string line in lines)
-    {
-        if (data == true)
-        {
-            // Logic to read entry
-        }
-        else if(line == "ENTRIES") 
-        {
-            data = true;
-        }
-    }
-    
-    return entries;
-}
 }
