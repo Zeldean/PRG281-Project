@@ -112,8 +112,55 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                 userItem.AddItem("View History", () =>
                 {
                     // Logic to display user’s history
+                    Console.Clear();
+                    Console.WriteLine("History");
+                    Console.ReadKey();
+                    userItem.Display();
                 });
-
+                userItem.AddItem("Genarate Reports", () =>
+                {
+                    Menu reports = new Menu("Reports");
+                    reports.AddItem("Weekly", () => 
+                    {
+                        // Logic to genarate a Weekly report
+                    });
+                    reports.AddItem("Mounthly", () => 
+                    {
+                        // Logic to genarate a Mounthly report
+                    });
+                    reports.AddItem("Yearly", () => 
+                    {
+                        // Logic to genarate a Yearly report
+                    });
+                    reports.AddItem("Back", userItem.Display);
+                    reports.Display();
+                });
+                userItem.AddItem("Settings", () =>
+                {
+                    Menu settings = new Menu("Settings");
+                    settings.AddItem("Data Management", () =>
+                    {
+                        Menu dataManagement = new Menu("Data Management");
+                        dataManagement.AddItem("Clear Data", () =>
+                        {
+                            //user.ClearData();
+                        });
+                        dataManagement.AddItem("Import", () =>
+                        {
+                            //user.ImportData();
+                        });
+                        dataManagement.AddItem("Export", () =>
+                        {
+                            //user.ExportData();
+                        });
+                    });
+                    settings.AddItem("Notifications", () =>
+                    {
+                        // Logic to genarate a Mounthly report
+                    });
+                    settings.AddItem("Exit Settings", userItem.Display );
+                    settings.Display();
+                });
                 userItem.Display();
             });
         }
