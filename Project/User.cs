@@ -45,10 +45,6 @@ namespace FileStorage
                 Console.ReadKey();
                 CreateUser();
             }
-
-
-            
-
         }
         public Dictionary<string, string> UserList()
         {

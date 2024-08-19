@@ -19,11 +19,11 @@ class Program
     static void DisplayUserSelectionMenu(Dictionary<string, string> userFiles, User user)
     {
         Menu selectUser = new Menu("Select User");
-        UserList(userFiles, selectUser, user);
+        UserListDisplay(userFiles, selectUser, user);
         selectUser.Display();
     }
 
-    static void UserList(Dictionary<string, string> userFiles, Menu selectUser, User user)
+    static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUser, User user) // File name without extension, File path
     {
         selectUser.AddItem("Add User", () =>
         {
@@ -36,6 +36,7 @@ class Program
         {
             selectUser.AddItem(userFile.Key, () =>
             {
+                user.UserName
                 Menu userItem = new Menu(userFile.Key);
                 userItem.AddItem("New Entry", () =>
                 {
@@ -48,6 +49,7 @@ class Program
                     {
                         // Logic to handle "Units Purchased" entry
                     });
+                    entry.AddItem("Back", () => { selectUser.Display(); });
                     entry.Display();
                 });
 

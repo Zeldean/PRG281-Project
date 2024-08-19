@@ -12,3 +12,18 @@ C:\Users\deanv\OneDrive - belgiumcampus.ac.za\BC\2nd Year\PRG 281\Code\Project\P
 C:\Users\deanv\OneDrive - belgiumcampus.ac.za\BC\2nd Year\PRG 281\Code\Project\Project\obj\Debug\net8.0\Project.pdb
 C:\Users\deanv\OneDrive - belgiumcampus.ac.za\BC\2nd Year\PRG 281\Code\Project\Project\obj\Debug\net8.0\Project.genruntimeconfig.cache
 C:\Users\deanv\OneDrive - belgiumcampus.ac.za\BC\2nd Year\PRG 281\Code\Project\Project\obj\Debug\net8.0\ref\Project.dll
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\bin\Debug\net8.0\Project.exe
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\bin\Debug\net8.0\Project.deps.json
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\bin\Debug\net8.0\Project.runtimeconfig.json
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\bin\Debug\net8.0\Project.dll
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\bin\Debug\net8.0\Project.pdb
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\obj\Debug\net8.0\Project.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\obj\Debug\net8.0\Project.AssemblyInfoInputs.cache
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\obj\Debug\net8.0\Project.AssemblyInfo.cs
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\obj\Debug\net8.0\Project.csproj.CoreCompileInputs.cache
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\obj\Debug\net8.0\Project.sourcelink.json
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\obj\Debug\net8.0\Project.dll
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\obj\Debug\net8.0\refint\Project.dll
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\obj\Debug\net8.0\Project.pdb
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\obj\Debug\net8.0\Project.genruntimeconfig.cache
+C:\Users\deanv\Documents\Repos\PRG281-Project\Project\obj\Debug\net8.0\ref\Project.dll
