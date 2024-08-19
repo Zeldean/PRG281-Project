@@ -36,7 +36,7 @@ class Program
         {
             selectUser.AddItem(userFile.Key, () =>
             {
-                user.UserName
+                user.UserName = userFile.Key;
                 Menu userItem = new Menu(userFile.Key);
                 userItem.AddItem("New Entry", () =>
                 {
@@ -49,7 +49,7 @@ class Program
                     {
                         // Logic to handle "Units Purchased" entry
                     });
-                    entry.AddItem("Back", () => { selectUser.Display(); });
+                    entry.AddItem("Back", () => { DisplayUserSelectionMenu(userFiles, user); });
                     entry.Display();
                 });
 

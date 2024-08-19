@@ -1,4 +1,19 @@
-﻿using System;
+﻿/*
+ * ===========================================
+ * Author: Zeldean
+ * Project: PRG281 Project
+ * Date: August 19, 2024
+ * ===========================================
+ *   ______      _      _                     
+ *  |___  /     | |    | |                    
+ *     / /  ___ | |  __| |  ___   __ _  _ __  
+ *    / /  / _ \| | / _` | / _ \ / _` || '_ \ 
+ *   / /__|  __/| || (_| ||  __/| (_| || | | |
+ *  /_____|\___||_| \__,_| \___| \__,_||_| |_|
+ *   
+ * ===========================================
+ */
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -41,7 +56,7 @@ namespace FileStorage
             if (!files.Any())
             {
                 Console.WriteLine("No Users found...");
-                Console.WriteLine("Create User");
+                Console.WriteLine("Press Enter to Create User");
                 Console.ReadKey();
                 CreateUser();
             }

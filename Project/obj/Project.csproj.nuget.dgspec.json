@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Project.csproj": {}
+    "c:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Project.csproj": {}
   },
   "projects": {
-    "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Project.csproj": {
+    "c:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Project.csproj",
+        "projectUniqueName": "c:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Project.csproj",
         "projectName": "Project",
-        "projectPath": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Project.csproj",
+        "projectPath": "c:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Project.csproj",
         "packagesPath": "C:\\Users\\deanv\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\obj\\",
+        "outputPath": "c:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\deanv\\AppData\\Roaming\\NuGet\\NuGet.Config",
