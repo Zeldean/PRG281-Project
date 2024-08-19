@@ -43,10 +43,14 @@ class Program
                     Menu entry = new Menu("Entries");
                     entry.AddItem("Current Units", () =>
                     {
+                        Entry newEntry = new Entry(1);
+                        newEntry.AddEntry();
                         // Logic to handle "Current Units" entry
                     });
                     entry.AddItem("Units Purchased", () =>
                     {
+                        Entry newEntry = new Entry(2);
+                        newEntry.AddEntry();
                         // Logic to handle "Units Purchased" entry
                     });
                     entry.AddItem("Back", () => { DisplayUserSelectionMenu(userFiles, user); });
