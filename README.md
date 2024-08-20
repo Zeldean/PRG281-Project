@@ -1,4 +1,4 @@
-# Electricity Usage Tracking System
+# PRG 281 Project
 
 ## Title Page
 **Project Title:** Electricity Usage Tracking System for Prepaid Meters  
@@ -8,8 +8,8 @@
 - **Jan-Paul Seaman (578081)**
 - **Stiaan Megit (600819)**
 
-**Course Name:** Programming 2X1  
-**Date of Submission:** [Date]
+**Course Name:** Programming 281  
+**Date of Submission:** 27 August 2024
 
 ---
 
