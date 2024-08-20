@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|c:\\users\\deanv\\documents\\repos\\prg281-project\\project\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|solutionrelative:project\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|c:\\users\\deanv\\documents\\repos\\prg281-project\\project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|solutionrelative:project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|c:\\users\\deanv\\documents\\repos\\prg281-project\\project\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|solutionrelative:project\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,30 +18,30 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\User.cs",
               "RelativeDocumentMoniker": "Project\\User.cs",
               "ToolTip": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\User.cs",
               "RelativeToolTip": "Project\\User.cs",
-              "ViewState": "AQIAAIQAAAAAAAAAAAAAwJQAAABPAAAA",
+              "ViewState": "AQIAAKEAAAAAAAAAAIA0wJEAAABJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-19T18:07:12.5Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Program.cs",
               "RelativeDocumentMoniker": "Project\\Program.cs",
               "ToolTip": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Program.cs",
               "RelativeToolTip": "Project\\Program.cs",
-              "ViewState": "AQIAAJ4AAAAAAAAAAAAgwLQAAABDAAAA",
+              "ViewState": "AQIAAEAAAAAAAAAAAAAYwEwAAAAWAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-19T15:36:38.9Z",
               "EditorCaption": ""

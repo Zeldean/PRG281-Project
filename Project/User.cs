@@ -133,20 +133,20 @@ namespace FileStorage
         public void ClearData()
         {
             string[] lines = File.ReadAllLines(FilePath);
-            bool dataStarted = false;
-            for (int index = 0; index < lines.Length; index++)
+            int index = 0;
+            for (index = 0; index < lines.Length; index++)
             {
                 if (lines[index] == "ENTRIES")
                 {
-                    dataStarted = true;
-                }
-                else if (dataStarted)
-                {
-                    lines[index] = "";
+                    break;
                 }
             }
-            File.WriteAllLines(filePath, lines);
+            File.Delete(FilePath);
+            File.Create(FilePath).Close();
+            var newLines = new ArraySegment<string>(lines, 0, index + 1);
+            File.WriteAllLines(FilePath, newLines);
             Console.WriteLine("All data was cleard. Press Enter to continue.");
+            Console.ReadKey();
         }
     }
 
@@ -219,6 +219,33 @@ namespace FileStorage
                 }
             }
             return Units;
+        }
+        public static void CreateEntry(string type, string fileP) 
+        {
+            Console.WriteLine("================================================================");
+
+            if (type == "Type1") {
+                Console.WriteLine("Please Enter Current number of units");
+            }
+            else if (type == "Type2") {
+                Console.WriteLine("Please Enter number of units Purchesed");
+            }   
+
+            int units = Convert.ToInt32(Console.ReadLine());
+            DateOnly date = DateOnly.FromDateTime(DateTime.Now); //  gets the current date
+            Entry NewEntry = new Entry();
+            NewEntry.CurentUnits(date, units, type);
+            string EntryText="("+NewEntry.EntryDate.ToString()+"),"+NewEntry.EntryUnits.ToString()+","+NewEntry.EntryType.ToString(); // creates the string that will be used as a entry.
+            
+            List<string> lines = new List<string>();
+            lines = File.ReadAllLines(fileP).ToList(); // reads the texts on the text file.
+            lines.Add(EntryText);             //Adds text to a text file.
+            File.WriteAllLines(fileP, lines); //Adds text to a text file.
+            foreach (String line in lines)
+                {
+                    Console.WriteLine(line); // loops through all of the text lines on the text file and displays it on the console.
+                }
+            Console.ReadLine();
         }
     }
 }
