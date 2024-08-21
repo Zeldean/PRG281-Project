@@ -32,15 +32,29 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
             userFiles = user.UserList(); // Update the dictionary after a new user is created.
             DisplayUserSelectionMenu(userFiles, user); // Rebuild the menu with the updated user list.
         });
-
+       
         foreach (var userFile in userFiles)
         {
             selectUser.AddItem(userFile.Key, () =>
             {
                 user.UserName = userFile.Key;
                 user.FilePath = userFile.Value;
+                notification NewNote = new notification();
+
+                string entry = NewNote.GeneratingNote(user.FilePath);
+                int limit = NewNote.UnitLimit(entry);
+                Thread thr1 = new Thread(() => NewNote.GeneratingNote(user.FilePath));
+                Thread thr2 = new Thread(() => NewNote.UnitLimit(entry));
+                Thread thr3 = new Thread(() => NewNote.Respons(limit));
+
+                thr1.Start();
+                thr2.Start();
+                thr3.Start();
 
                 // Notification
+                // notification note = new notification();
+                // notification.Notification(user.FilePath);
+
 
                 Menu userItem = new Menu(userFile.Key);
                 userItem.AddItem("New Entry", () =>
@@ -127,12 +141,19 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                     });
                     settings.AddItem("Notifications", () =>
                     {
-                        // Logic for changing notification settings
+                        /*
+                        List<string> NoteList = new List<string>();
+                        notification note = new notification();
+                        notification.Notification(user.FilePath);
+                        Console.ReadLine();
+                        */
                     });
                     settings.AddItem("Exit Settings", userItem.Display );
                     settings.Display();
+                    
                 });
-                userItem.AddItem("Exit", () => { Environment.Exit(0); });  
+                userItem.AddItem("Exit", () => { Environment.Exit(0); });
+               
                 userItem.Display();
             });
         }

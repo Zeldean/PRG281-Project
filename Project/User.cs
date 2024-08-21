@@ -248,4 +248,31 @@ namespace FileStorage
             Console.ReadLine();
         }
     }
+
+    class notification
+    {
+        public string GeneratingNote(string fileP)
+        { 
+            List<string> lines = new List<string>();     // creates a list that will store all the lines of the text file
+            lines = File.ReadAllLines(fileP).ToList();    // reads all the text to the list
+            File.WriteAllLines(fileP, lines); 
+            string LastEntry = lines[lines.Count - 1];    // takes the last entry of the list and stores in in a string
+            return LastEntry;
+        }
+        public  int UnitLimit(string LastEntry)
+        {
+            string[] arrLastEntry = LastEntry.Split(',');    // splits the last entry string into multiple strings
+            int unitlimit = Convert.ToInt32(arrLastEntry[1]); // Takes the  Current units from the split last entry string and converts it to a number
+            return unitlimit;
+        }
+        public void Respons(int unitlimit)  // if Current units is less then 50 it will provide a notification.
+        {
+            if (unitlimit < 50)
+            {
+                
+                Console.WriteLine("\nNotification: DANGER! Current number of units is less then 50 units. Please purchase more units");
+                
+            }
+        }
+    }
 }
