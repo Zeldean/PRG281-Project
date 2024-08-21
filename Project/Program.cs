@@ -1,6 +1,7 @@
 ﻿using System.Reflection.Metadata.Ecma335;
 using FileStorage;
 using Navigation;
+using Project;
 
 class Program
 {
@@ -105,6 +106,8 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                     Menu reports = new Menu("Reports");
                     reports.AddItem("Weekly", () => 
                     {
+                        Calculation calculation = new Calculation(user.FilePath);
+                        Console.ReadLine();
                         // Logic to genarate a Weekly report
                     });
                     reports.AddItem("Mounthly", () => 
