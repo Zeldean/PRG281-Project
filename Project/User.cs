@@ -148,9 +148,105 @@ namespace FileStorage
             Console.WriteLine("All data was cleard. Press Enter to continue.");
             Console.ReadKey();
         }
-    }
+        public static void ClearData(string filePath)
+        {
+            string[] lines = File.ReadAllLines(filePath);
+            int index = 0;
+            for (index = 0; index < lines.Length; index++)
+            {
+                if (lines[index] == "ENTRIES")
+                {
+                    break;
+                }
+            }
+            File.Delete(filePath);
+            File.Create(filePath).Close();
+            var newLines = new ArraySegment<string>(lines, 0, index + 1);
+            File.WriteAllLines(filePath, newLines);
+            Console.WriteLine("All data was cleard. Press Enter to continue.");
+            Console.ReadKey();
+        }
+        public void ExportDataToCsv(string userFilePath)
+        {
+            List<(DateTime date, int units, string type)> data = Entry.ReadUserData(userFilePath);
+            // Get the path to the Downloads folder
+            string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
 
-    
+            // Set the file name and path
+            string fileName = "UserData.csv";
+            string filePath = Path.Combine(downloadsPath, fileName);
+
+            try
+            {
+                using (StreamWriter writer = new StreamWriter(filePath))
+                {
+                    // Write the header
+                    writer.WriteLine("Date,Units,Type");
+
+                    // Write each record
+                    foreach (var record in data)
+                    {
+                        writer.WriteLine($"{record.date:MM/dd/yyyy},{record.units},{record.type}");
+                    }
+                }
+
+                Console.WriteLine($"File successfully saved to: {filePath}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error saving file: {ex.Message}");
+            }
+    }
+        public void ImportDataFromCsv(string fullFilePath)
+        {
+            var importedData = new List<(DateTime date, int units, string type)>();
+
+            try
+            {
+                // Check if the file exists
+                if (!File.Exists(fullFilePath))
+                {
+                    Console.WriteLine("File not found.");
+                }
+                else
+                {
+                    // Read the CSV file line by line
+                    string[] lines = File.ReadAllLines(fullFilePath);
+
+                    // Skip the header (assuming the first line is the header)
+                    for (int i = 1; i < lines.Length; i++)
+                    {
+                        string[] parts = lines[i].Split(',');
+
+                        if (parts.Length == 3)
+                        {
+                            // Parse the data
+                            DateTime date = DateTime.Parse(parts[0]);
+                            int units = int.Parse(parts[1]);
+                            string type = parts[2];
+
+                            // Add the parsed data to the list
+                            importedData.Add((date, units, type));
+                        }
+                        else
+                        {
+                            Console.WriteLine($"Invalid data format in line {i + 1}: {lines[i]}");
+                        }
+                    }
+                    ClearData(fullFilePath);
+                    foreach (var data in importedData)
+                    {
+                        Entry.CreateEntry(data.type, data.units.ToString(), data.date);
+                    }
+                    Console.WriteLine("Data imported successfully.");
+                }            
+            }
+            catch (Exception ex)
+            {   
+                Console.WriteLine($"Error importing data: {ex.Message}");
+            }       
+        }
+    }   
 
     class Entry
     {
@@ -160,15 +256,46 @@ namespace FileStorage
 
         public DateOnly EntryDate { get => entryDate; set => entryDate = value; }
         public string EntryType { get => entryType; set => entryType = value; }
-        public int EntryUnits { get => entryUnits; set => entryUnits = value; }
-
-        public void CurentUnits(DateOnly date,int units, string type)
+        public int EntryUnits { get => entryUnits; set => entryUnits = value; }        
+       
+        /// <summary>
+        /// Reads and parses user data from a file and returns a list containing date, units, and type information.
+        /// </summary>
+        /// <param name="filePath">The file path to the text file containing the data entries.</param>
+        /// <returns>
+        /// A list that contains:
+        /// - DateTime date: The date of the entry.
+        /// - int units: The number of units recorded.
+        /// - string type: The type of entry (e.g., "Type1" or "Type2").
+        /// </returns>
+        public static List<(DateTime date, int units, string type)> ReadUserData(string filePath)
         {
-            EntryUnits = units;
-            EntryType = type;
-            EntryDate = date;
-        }
+            List<(DateTime date, int units, string type)> list = new List<(DateTime, int, string)>();
+            string[] lines = File.ReadAllLines(filePath);
+            int index = 0;
+
+            for (index = 0; index < lines.Length; index++)
+            {
+                if (lines[index] == "ENTRIES")
+                {
+                    break;
+                }
+            }        
+
+            var entries = new ArraySegment<string>(lines, index + 1, lines.Length - (index + 1));
+    
+            foreach (string entry in entries)
+            {
+                string[] parts = entry.Split(',');
         
+                string dateString = parts[0].Trim('(', ')');
+                DateTime date = DateTime.Parse(dateString);
+                int units = int.Parse(parts[1]);            
+                string type = parts[2];            
+                list.Add((date, units, type));
+            }
+            return list;
+        }
         public List<String> ReadEntries(string filePath)
         {
             List<String> entries = new List<String>(); 
@@ -193,8 +320,7 @@ namespace FileStorage
             }
  
             return entries;
-        }
- 
+        } 
         public List<String> ReadUnits(string filePath)
         {
             List<String> Units = new List<String>();
@@ -247,6 +373,25 @@ namespace FileStorage
                 }
             Console.ReadLine();
         }
+        public static void CreateEntry(string type, string fileP, DateTime date) 
+        {
+            int units = Convert.ToInt32(Console.ReadLine());
+            Entry NewEntry = new Entry();
+            NewEntry.CurentUnits(DateOnly.FromDateTime(date), units, type);
+            string EntryText="("+NewEntry.EntryDate.ToString()+"),"+NewEntry.EntryUnits.ToString()+","+NewEntry.EntryType.ToString(); // creates the string that will be used as a entry.
+            
+            List<string> lines = new List<string>();
+            lines = File.ReadAllLines(fileP).ToList(); // reads the texts on the text file.
+            lines.Add(EntryText);             //Adds text to a text file.
+            File.WriteAllLines(fileP, lines); //Adds text to a text file.
+        }
+        public void CurentUnits(DateOnly date,int units, string type)
+        {
+            EntryUnits = units;
+            EntryType = type;
+            EntryDate = date;
+        }
+        
     }
 
     class Notification

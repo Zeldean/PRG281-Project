@@ -130,11 +130,11 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                         });
                         dataManagement.AddItem("Import", () =>
                         {
-                            //user.ImportData();
+                            user.ImportDataFromCsv(user.FilePath);
                         });
                         dataManagement.AddItem("Export", () =>
                         {
-                            //user.ExportData();
+                            user.ExportDataToCsv(user.FilePath);
                         });
                         dataManagement.AddItem("Back", settings.Display);
                         dataManagement.Display();
