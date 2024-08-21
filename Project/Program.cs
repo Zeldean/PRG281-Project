@@ -39,7 +39,7 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
             {
                 user.UserName = userFile.Key;
                 user.FilePath = userFile.Value;
-                notification NewNote = new notification();
+                Notification NewNote = new Notification();
 
                 string entry = NewNote.GeneratingNote(user.FilePath);
                 int limit = NewNote.UnitLimit(entry);

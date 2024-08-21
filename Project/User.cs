@@ -249,7 +249,7 @@ namespace FileStorage
         }
     }
 
-    class notification
+    class Notification
     {
         public string GeneratingNote(string fileP)
         { 
