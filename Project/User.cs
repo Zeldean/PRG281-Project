@@ -13,6 +13,7 @@
  *   
  * ===========================================
  */
+using Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ using System.Threading.Tasks;
 
 namespace FileStorage
 {
-    class User
+    class User 
     {
         // Propirties
         private string? userName;
@@ -168,7 +169,7 @@ namespace FileStorage
         }
         public void ExportDataToCsv(string userFilePath)
         {
-            List<(DateTime date, int units, string type)> data = Entry.ReadUserData(userFilePath);
+            List<(DateTime date, int units, string type)> data = EntryList.ReadUserData(userFilePath);
             // Get the path to the Downloads folder
             string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
 
@@ -246,7 +247,7 @@ namespace FileStorage
                 Console.WriteLine($"Error importing data: {ex.Message}");
             }       
         }
-    }   
+    }
 
     class Entry
     {
@@ -268,84 +269,11 @@ namespace FileStorage
         /// - int units: The number of units recorded.
         /// - string type: The type of entry (e.g., "Type1" or "Type2").
         /// </returns>
-        public static List<(DateTime date, int units, string type)> ReadUserData(string filePath)
-        {
-            List<(DateTime date, int units, string type)> list = new List<(DateTime, int, string)>();
-            string[] lines = File.ReadAllLines(filePath);
-            int index = 0;
+        /// 
 
-            for (index = 0; index < lines.Length; index++)
-            {
-                if (lines[index] == "ENTRIES")
-                {
-                    break;
-                }
-            }        
 
-            var entries = new ArraySegment<string>(lines, index + 1, lines.Length - (index + 1));
-    
-            foreach (string entry in entries)
-            {
-                string[] parts = entry.Split(',');
+
         
-                string dateString = parts[0].Trim('(', ')');
-                DateTime date = DateTime.Parse(dateString);
-                int units = int.Parse(parts[1]);            
-                string type = parts[2];            
-                list.Add((date, units, type));
-            }
-            return list;
-        }
-        public List<String> ReadEntries(string filePath)
-        {
-            List<String> entries = new List<String>(); 
-            List<String> Fulltxt = new List<String>();
- 
-            Fulltxt = File.ReadAllLines(filePath).ToList();
- 
-            string toBeSearched = ",";
- 
-            bool data = false;
-            foreach (string line in Fulltxt)
-            {
-                if (data)
-                {
-                    string Seper = line.Substring(line.IndexOf(toBeSearched) + toBeSearched.Length, 4);
-                    entries.Add(line);
-                }
-                else if(line == "ENTRIES") 
-                {
-                    data = true;
-                }
-            }
- 
-            return entries;
-        } 
-        public List<String> ReadUnits(string filePath)
-        {
-            List<String> Units = new List<String>();
-            List<String> Fulltxt = new List<String>();
- 
-            Fulltxt = File.ReadAllLines(filePath).ToList();
- 
-            string toBeSearched = ",";
- 
-            bool data = false;
-            foreach (string line in Fulltxt)
-            {
-                if (data)
-                {
-                    string Seper = line.Substring(line.IndexOf(toBeSearched) + toBeSearched.Length, 4);              
-                    Units.Add(Seper);
- 
-                }
-                else if (line == "ENTRIES")
-                {
-                    data = true;
-                }
-            }
-            return Units;
-        }
         public static void CreateEntry(string type, string fileP) 
         {
             Console.WriteLine("================================================================");
@@ -394,30 +322,30 @@ namespace FileStorage
         
     }
 
-    class Notification
-    {
-        public string GeneratingNote(string fileP)
-        { 
-            List<string> lines = new List<string>();     // creates a list that will store all the lines of the text file
-            lines = File.ReadAllLines(fileP).ToList();    // reads all the text to the list
-            File.WriteAllLines(fileP, lines); 
-            string LastEntry = lines[lines.Count - 1];    // takes the last entry of the list and stores in in a string
-            return LastEntry;
-        }
-        public  int UnitLimit(string LastEntry)
-        {
-            string[] arrLastEntry = LastEntry.Split(',');    // splits the last entry string into multiple strings
-            int unitlimit = Convert.ToInt32(arrLastEntry[1]); // Takes the  Current units from the split last entry string and converts it to a number
-            return unitlimit;
-        }
-        public void Respons(int unitlimit)  // if Current units is less then 50 it will provide a notification.
-        {
-            if (unitlimit < 50)
-            {
+    //class Notification
+    //{
+    //    public string GeneratingNote(string fileP)
+    //    { 
+    //        List<string> lines = new List<string>();     // creates a list that will store all the lines of the text file
+    //        lines = File.ReadAllLines(fileP).ToList();    // reads all the text to the list
+    //        File.WriteAllLines(fileP, lines); 
+    //        string LastEntry = lines[lines.Count - 1];    // takes the last entry of the list and stores in in a string
+    //        return LastEntry;
+    //    }
+    //    public  int UnitLimit(string LastEntry)
+    //    {
+    //        string[] arrLastEntry = LastEntry.Split(',');    // splits the last entry string into multiple strings
+    //        int unitlimit = Convert.ToInt32(arrLastEntry[1]); // Takes the  Current units from the split last entry string and converts it to a number
+    //        return unitlimit;
+    //    }
+    //    public void Respons(int unitlimit)  // if Current units is less then 50 it will provide a notification.
+    //    {
+    //        if (unitlimit < 50)
+    //        {
                 
-                Console.WriteLine("\nNotification: DANGER! Current number of units is less then 50 units. Please purchase more units");
+    //            Console.WriteLine("\nNotification: DANGER! Current number of units is less then 50 units. Please purchase more units");
                 
-            }
-        }
-    }
+    //        }
+    //    }
+    //}
 }

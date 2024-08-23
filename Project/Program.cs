@@ -1,4 +1,5 @@
 ﻿using System.Reflection.Metadata.Ecma335;
+using System.Security.Cryptography.X509Certificates;
 using FileStorage;
 using Navigation;
 using Project;
@@ -40,17 +41,18 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
             {
                 user.UserName = userFile.Key;
                 user.FilePath = userFile.Value;
-                Notification NewNote = new Notification();
+                
+                //Notification NewNote = new Notification();
 
-                string entry = NewNote.GeneratingNote(user.FilePath);
-                int limit = NewNote.UnitLimit(entry);
-                Thread thr1 = new Thread(() => NewNote.GeneratingNote(user.FilePath));
-                Thread thr2 = new Thread(() => NewNote.UnitLimit(entry));
-                Thread thr3 = new Thread(() => NewNote.Respons(limit));
+                //string entry = NewNote.GeneratingNote(user.FilePath);
+                //int limit = NewNote.UnitLimit(entry);
+                //Thread thr1 = new Thread(() => NewNote.GeneratingNote(user.FilePath));
+                //Thread thr2 = new Thread(() => NewNote.UnitLimit(entry));
+                //Thread thr3 = new Thread(() => NewNote.Respons(limit));
 
-                thr1.Start();
-                thr2.Start();
-                thr3.Start();
+                //thr1.Start();
+                //thr2.Start();
+                //thr3.Start();
 
                 // Notification
                 // notification note = new notification();
@@ -74,49 +76,33 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                 });
                 userItem.AddItem("View History", () =>
                 {
-                    // Logic to display user’s history
                     Console.Clear();
-                    Console.WriteLine("History");
-                    // Logic to display user’s history
-                    Entry Ent = new Entry();
-                    Entry Units = new Entry();
- 
-                    Ent.ReadEntries(user.FilePath);
- 
-                    List<String> entries = Ent.ReadEntries(user.FilePath);
- 
-                    foreach (string line in entries)
-                    {
-                        Console.WriteLine(line);
-                    }
-                    /*
-                                       Units.ReadEntries(user.FilePath);
-
-                                       List<String> iUnits = Ent.ReadEntries(user.FilePath);
-                                       foreach (string line in iUnits)
-                                       {
-                                           Console.WriteLine(line); 
-                                       }*/
-
+                   
+                    Console.WriteLine("All History:");
+                    EntryList entryList = new EntryList(user.FilePath);
                     Console.ReadKey();
                     userItem.Display();
                 });
                 userItem.AddItem("Genarate Reports", () =>
                 {
                     Menu reports = new Menu("Reports");
-                    reports.AddItem("Weekly", () => 
+                    reports.AddItem("Weekly", () =>
                     {
-                        Calculation calculation = new Calculation(user.FilePath);
-                        Console.ReadLine();
                         // Logic to genarate a Weekly report
+                        Calculation calculation = new Calculation(user.FilePath, "Weekly");
+                        Console.ReadLine();
                     });
-                    reports.AddItem("Mounthly", () => 
+                    reports.AddItem("Monthly", () =>
                     {
                         // Logic to genarate a Mounthly report
+                        Calculation calculation = new Calculation(user.FilePath, "Monthly");
+                        Console.ReadLine();
                     });
-                    reports.AddItem("Yearly", () => 
+                    reports.AddItem("Yearly", () =>
                     {
                         // Logic to genarate a Yearly report
+                        Calculation calculation = new Calculation(user.FilePath, "Yearly");
+                        Console.ReadLine();
                     });
                     reports.AddItem("Back", userItem.Display);
                     reports.Display();
