@@ -106,7 +106,7 @@ Implement exceptions for invalid data entries and handle errors related to file 
 
 ## 3. Flowchart
 
-![Flow Chart](Project/bin/Debug/net8.0/Media/FlowChart_1.png)
+![Flow Chart](Project/bin/Debug/net8.0/Media/FlowChart_1.svg)
 
 ---
 
