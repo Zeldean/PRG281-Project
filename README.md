@@ -139,10 +139,23 @@ Implement exceptions for invalid data entries and handle errors related to file 
    - Design and implement console app navigation class with the ability to `create menus`, `add menu items`, `exicute code when menu item is selected`, `console disply and clear`.
 - **Hermanus:**
    - Implement data reading functionality.
-- **Jan-Paul:** 
-   - Design and implement the `Calculation` class.
+- **Jan-Paul Seaman:**  
+   - Implement `Calculation` class: Inherits from `User` class and manages data calculations.
+   - Implement `TotalUsage` method: Generate reports for different periods (Weekly, Monthly, Yearly).
+   - Implement `CalculateTotal` method: Handle complex calculation logic for "Type1" and "Type2" entries.
+   - Handle entry processing: Includes filtering, grouping by month, and predicting usage based on previous data.
+   - Implement `EntryCompare` class: Inherits the built-in interface `IComparable` to sort entries for the yearly report, placing the newest month at the top of the list.
+   - **Additional Details:**
+     - **Constructor:** Initializes the class, uses the `ReadUserData` method from the `EntryList` class, and calculates total usage based on the report type.
+     - `EntryCompare` class: Sorts entries in descending order based on the date.
 - **Stiaan:**
-   - Implement reporting functionality, file I/O, and threading with custom alerts.
+   - Implement `Notification` class: Manages the methods that provide notification messages.
+   - Implement `GeneratingNote` method: Reads through the text file and returns the units from the last entry.
+   - Implement `Respons` method: Uses the units returned from the `GeneratingNote` method to check if the units are less than 50 units; if true, it generates a notification message.
+   - Implement `Message` method: Stores the response from the `Respons` method.
+   - Implement `MultiThreading & EventHandling`: The `GeneratingNote` method is passed to `Thread1`, which runs and retrieves the units from the last entry. When `Thread1` finishes, `Thread2` runs. `Thread2` contains the event that points to the `Note` delegate, which uses the `Message` method.
+   - Implement `CreateEntry` method: Takes input from the user and inserts the input as a string into the text file at the bottom of the page. Takes current units input and purchased units input.
+   - Class Diagram
 
 ---
 
