@@ -204,8 +204,8 @@ namespace FileStorage
             string fullFilePath = Console.ReadLine();
             var importedData = new List<(DateTime date, int units, string type)>();
 
-            //try
-            //{
+            try
+            {
                 // Check if the file exists
                 if (!File.Exists(fullFilePath))
                 {
@@ -247,11 +247,11 @@ namespace FileStorage
                     Console.WriteLine("Data imported successfully.");
                     Console.ReadKey();
                 }            
-            //}
-            //catch (Exception ex)
-            //{   
-            //    Console.WriteLine($"Error importing data: {ex.Message}");
-            //}       
+            }
+            catch (Exception ex)
+            {   
+               Console.WriteLine($"Error importing data: {ex.Message}");
+            }       
         }
     }
 
