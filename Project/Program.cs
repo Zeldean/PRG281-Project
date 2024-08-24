@@ -26,7 +26,7 @@ static void DisplayUserSelectionMenu(Dictionary<string, string> userFiles, User 
         selectUser.Display();
     }
 
-static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUser, User user) // File name without extension, File path
+static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUser, User user) // Key: File name without extension; Value: File path
     {
         selectUser.AddItem("Add User", () =>
         {
@@ -41,6 +41,8 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
             {
                 user.UserName = userFile.Key;
                 user.FilePath = userFile.Value;
+                Console.WriteLine(user.FilePath); // Here the file path displays
+                Console.ReadKey();
                 
                 //Notification NewNote = new Notification();
 
@@ -119,7 +121,7 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                         });
                         dataManagement.AddItem("Import", () =>
                         {
-                            user.ImportDataFromCsv(user.FilePath);
+                            user.ImportDataFromCsv();
                         });
                         dataManagement.AddItem("Export", () =>
                         {

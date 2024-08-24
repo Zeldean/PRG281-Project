@@ -130,9 +130,11 @@ namespace FileStorage
         /// <summary>
         /// Clears all data lines in a file, starting from the line that contains the word "ENTRIES".
         /// </summary>
-        /// <param name="filePath">The path to the file to be cleared.</param>
         public void ClearData()
         {
+            Console.WriteLine(FilePath);
+            Console.ReadKey();
+
             string[] lines = File.ReadAllLines(FilePath);
             int index = 0;
             for (index = 0; index < lines.Length; index++)
@@ -164,8 +166,6 @@ namespace FileStorage
             File.Create(filePath).Close();
             var newLines = new ArraySegment<string>(lines, 0, index + 1);
             File.WriteAllLines(filePath, newLines);
-            Console.WriteLine("All data was cleard. Press Enter to continue.");
-            Console.ReadKey();
         }
         public void ExportDataToCsv(string userFilePath)
         {
@@ -190,24 +190,27 @@ namespace FileStorage
                         writer.WriteLine($"{record.date:MM/dd/yyyy},{record.units},{record.type}");
                     }
                 }
-
                 Console.WriteLine($"File successfully saved to: {filePath}");
+                Console.ReadKey();
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error saving file: {ex.Message}");
             }
     }
-        public void ImportDataFromCsv(string fullFilePath)
+        public void ImportDataFromCsv()
         {
+            Console.WriteLine("Enter the path to the csv file you want to import.");
+            string fullFilePath = Console.ReadLine();
             var importedData = new List<(DateTime date, int units, string type)>();
 
-            try
-            {
+            //try
+            //{
                 // Check if the file exists
                 if (!File.Exists(fullFilePath))
                 {
                     Console.WriteLine("File not found.");
+                    Console.ReadKey();
                 }
                 else
                 {
@@ -232,20 +235,23 @@ namespace FileStorage
                         else
                         {
                             Console.WriteLine($"Invalid data format in line {i + 1}: {lines[i]}");
+                            Console.ReadKey();
                         }
                     }
-                    ClearData(fullFilePath);
+                    ClearData(FilePath);
                     foreach (var data in importedData)
                     {
-                        Entry.CreateEntry(data.type, data.units.ToString(), data.date);
+                        Entry.CreateEntry(data.type, data.units, data.date, FilePath);
+                        Console.WriteLine($"{data.type} + {data.units} + {data.date}");
                     }
                     Console.WriteLine("Data imported successfully.");
+                    Console.ReadKey();
                 }            
-            }
-            catch (Exception ex)
-            {   
-                Console.WriteLine($"Error importing data: {ex.Message}");
-            }       
+            //}
+            //catch (Exception ex)
+            //{   
+            //    Console.WriteLine($"Error importing data: {ex.Message}");
+            //}       
         }
     }
 
@@ -268,12 +274,7 @@ namespace FileStorage
         /// - DateTime date: The date of the entry.
         /// - int units: The number of units recorded.
         /// - string type: The type of entry (e.g., "Type1" or "Type2").
-        /// </returns>
-        /// 
-
-
-
-        
+        /// </returns>        
         public static void CreateEntry(string type, string fileP) 
         {
             Console.WriteLine("================================================================");
@@ -301,9 +302,8 @@ namespace FileStorage
                 }
             Console.ReadLine();
         }
-        public static void CreateEntry(string type, string fileP, DateTime date) 
-        {
-            int units = Convert.ToInt32(Console.ReadLine());
+        public static void CreateEntry(string type, int units , DateTime date, string fileP) 
+        {            
             Entry NewEntry = new Entry();
             NewEntry.CurentUnits(DateOnly.FromDateTime(date), units, type);
             string EntryText="("+NewEntry.EntryDate.ToString()+"),"+NewEntry.EntryUnits.ToString()+","+NewEntry.EntryType.ToString(); // creates the string that will be used as a entry.
@@ -318,8 +318,7 @@ namespace FileStorage
             EntryUnits = units;
             EntryType = type;
             EntryDate = date;
-        }
-        
+        }        
     }
 
     //class Notification

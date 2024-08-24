@@ -1,12 +1,105 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|c:\\users\\deanv\\documents\\repos\\prg281-project\\project\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|solutionrelative:project\\user.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|c:\\users\\deanv\\documents\\repos\\prg281-project\\project\\navigationclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|solutionrelative:project\\navigationclass.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|c:\\users\\deanv\\documents\\repos\\prg281-project\\project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|solutionrelative:project\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|c:\\users\\deanv\\documents\\repos\\prg281-project\\project\\entrylist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|solutionrelative:project\\entrylist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|c:\\users\\deanv\\documents\\repos\\prg281-project\\project\\calculation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F847CCF2-98A3-41BD-BBC2-5C6386B9E8AD}|Project\\Project.csproj|solutionrelative:project\\calculation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Calculation.cs",
+              "DocumentMoniker": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Calculation.cs",
+              "RelativeDocumentMoniker": "Project\\Calculation.cs",
+              "ToolTip": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Calculation.cs",
+              "RelativeToolTip": "Project\\Calculation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-24T12:47:12.55Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "EntryList.cs",
+              "DocumentMoniker": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\EntryList.cs",
+              "RelativeDocumentMoniker": "Project\\EntryList.cs",
+              "ToolTip": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\EntryList.cs",
+              "RelativeToolTip": "Project\\EntryList.cs",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAwDUAAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-24T12:47:09.393Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "NavigationClass.cs",
+              "DocumentMoniker": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\NavigationClass.cs",
+              "RelativeDocumentMoniker": "Project\\NavigationClass.cs",
+              "ToolTip": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\NavigationClass.cs",
+              "RelativeToolTip": "Project\\NavigationClass.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-24T12:47:08.655Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "User.cs",
+              "DocumentMoniker": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\User.cs",
+              "RelativeDocumentMoniker": "Project\\User.cs",
+              "ToolTip": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\User.cs",
+              "RelativeToolTip": "Project\\User.cs",
+              "ViewState": "AgIAANwAAAAAAAAAAAAowDABAABdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-24T12:44:47.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Program.cs",
+              "RelativeDocumentMoniker": "Project\\Program.cs",
+              "ToolTip": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\Program.cs",
+              "RelativeToolTip": "Project\\Program.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAAwHsAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-08-24T12:44:11.768Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

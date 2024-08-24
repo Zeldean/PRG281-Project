@@ -50,12 +50,12 @@ namespace Project
             }
             if (blankFound)
             {
-                User user = new User(filePath);
-                user.ClearData();
+                
+                User.ClearData(filePath);
 
                 foreach (var item in list)
                 {
-                    Entry.CreateEntry(item.type, item.units.ToString(), item.date);
+                    Entry.CreateEntry(item.type, item.units, item.date, filePath);
                 }
             }
             return list;
