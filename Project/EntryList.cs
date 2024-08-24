@@ -17,7 +17,6 @@ namespace Project
            
             ReadEntries(filepath);
         }
-
         public static List<(DateTime date, int units, string type)> ReadUserData(string filePath)
         {
             List<(DateTime date, int units, string type)> list = new List<(DateTime, int, string)>();
@@ -30,31 +29,39 @@ namespace Project
                 {
                     break;
                 }
-            }
+            }        
 
             var entries = new ArraySegment<string>(lines, index + 1, lines.Length - (index + 1));
-
+            bool blankFound = false;
             foreach (string entry in entries)
             {
-
+                if (string.IsNullOrWhiteSpace(entry))
+                {
+                    blankFound = true;
+                    continue;
+                }
                 string[] parts = entry.Split(',');
-
+        
                 string dateString = parts[0].Trim('(', ')');
-
-
-
-                DateTime.TryParse(dateString, out DateTime date);
-
-
-
-
-                int units = int.Parse(parts[1]);
-                string type = parts[2];
+                DateTime date = DateTime.Parse(dateString);
+                int units = int.Parse(parts[1]);            
+                string type = parts[2];            
                 list.Add((date, units, type));
+            }
+            if (blankFound)
+            {
+                User user = new User(filePath);
+                user.ClearData();
 
+                foreach (var item in list)
+                {
+                    Entry.CreateEntry(item.type, item.units.ToString(), item.date);
+                }
             }
             return list;
         }
+
+       
 
 
 
