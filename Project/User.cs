@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace FileStorage
 {
@@ -296,7 +297,7 @@ namespace FileStorage
             lines = File.ReadAllLines(fileP).ToList(); // reads the texts on the text file.
             lines.Add(EntryText);             //Adds text to a text file.
             File.WriteAllLines(fileP, lines); //Adds text to a text file.
-            foreach (String line in lines)
+            foreach (string line in lines)
                 {
                     Console.WriteLine(line); // loops through all of the text lines on the text file and displays it on the console.
                 }
@@ -321,30 +322,29 @@ namespace FileStorage
         }        
     }
 
-    //class Notification
-    //{
-    //    public string GeneratingNote(string fileP)
-    //    { 
-    //        List<string> lines = new List<string>();     // creates a list that will store all the lines of the text file
-    //        lines = File.ReadAllLines(fileP).ToList();    // reads all the text to the list
-    //        File.WriteAllLines(fileP, lines); 
-    //        string LastEntry = lines[lines.Count - 1];    // takes the last entry of the list and stores in in a string
-    //        return LastEntry;
-    //    }
-    //    public  int UnitLimit(string LastEntry)
-    //    {
-    //        string[] arrLastEntry = LastEntry.Split(',');    // splits the last entry string into multiple strings
-    //        int unitlimit = Convert.ToInt32(arrLastEntry[1]); // Takes the  Current units from the split last entry string and converts it to a number
-    //        return unitlimit;
-    //    }
-    //    public void Respons(int unitlimit)  // if Current units is less then 50 it will provide a notification.
-    //    {
-    //        if (unitlimit < 50)
-    //        {
-                
-    //            Console.WriteLine("\nNotification: DANGER! Current number of units is less then 50 units. Please purchase more units");
-                
-    //        }
-    //    }
-    //}
+    class Notification
+    {
+        public delegate void Note();
+        public event Note Alert;
+        public int GeneratingNote(string fileP)
+        { 
+            List<(DateTime date, int units, string type)> lines = EntryList.ReadUserData(fileP); //Generates a list of all the text entries using the EntryList class.
+            return lines[lines.Count-1].units; // Gets the last entry in the list.
+        }
+        
+        public void Respons(int unitlimit)  // if Current units is less then 50 it will provide a notification.
+        {
+            if (unitlimit < 50)
+            {
+               Console.WriteLine("Notification: DANGER! Current number of units is less then 50 units. Please purchase more units!\n");   
+            }
+        }
+        public void message() // Calls the event that generates the a notification.
+        {
+            if (Alert != null)
+            {
+                Alert();
+            }
+        }
+    }
 }
