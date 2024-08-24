@@ -1,6 +1,7 @@
 ﻿using FileStorage;
 using System;
 using System.Collections.Generic;
+using System.Collections.Immutable;
 using System.Linq;
 using System.Text;
 using System.Threading.Channels;
@@ -11,12 +12,10 @@ namespace Project
     internal class Calculation : User
     {
 
-        //public string reportType { get => reportType; set => reportType = value; }
-
         public Calculation(string filepath, string reportType) : base(filepath)
         {
-            var List = EntryList.ReadUserData(filepath);
-            TotalUsage(List, reportType);
+            var AllList = EntryList.ReadUserData(filepath);
+            TotalUsage(AllList, reportType);
         }
 
         public void TotalUsage(List<(DateTime Date, int Units, string Type)> entries, string ReportType)
@@ -47,28 +46,31 @@ namespace Project
                     }
                 case "Yearly":
                     {
+                        // Sort the list using the Icompareable interface
+                        entries.Sort(new EntryCompare());
                         // Group entries by month and dispolaty total for each month
-                        var groupedByMonth = entries.GroupBy(entry => entry.Date.Month);
-
-                        int lastMonth = groupedByMonth.Max(month => month.Key);  //get last month recoorded
+                        var groupedByYearMonth = entries.GroupBy(entry => new { entry.Date.Year, entry.Date.Month});
+                        
+                        int lastMonth = groupedByYearMonth.Max(month => month.Key.Month);  //get last month recoorded
                         double totalForPredictuion = CalculateTotal(entries);
-                        int ammountOfMonthes = groupedByMonth.Count();
+                        int ammountOfMonthes = groupedByYearMonth.Count();
                         double avragePrediction = totalForPredictuion / ammountOfMonthes;
 
-                        foreach (var monthGroup in groupedByMonth)
-                        {
-                            double MonthlyUsage = CalculateTotal(monthGroup.ToList());
+                        //disply prediction
+                        string lastMonthName = new DateTime(DateTime.Now.Year, lastMonth + 1, 1).ToString("MMMM");
+                        Console.WriteLine($"Prediction for {lastMonthName} {DateTime.Now.Year}: {avragePrediction}");
+                        //predicted month based on the avrages
 
-                            string monthName = new DateTime(1, monthGroup.Key, 1).ToString("MMMM");
-                            Console.WriteLine($"Total usage for {monthName}: {MonthlyUsage:F2}");
+                        foreach (var monthYearGroup in groupedByYearMonth)
+                        {
+                            double MonthlyUsage = CalculateTotal(monthYearGroup.ToList());
+                            string monthName = new DateTime(monthYearGroup.Key.Year, monthYearGroup.Key.Month, 1).ToString("MMMM");
+                            string year = monthYearGroup.Key.Year.ToString();
+                            Console.WriteLine($"Total usage for {monthName} {year}: {MonthlyUsage:F2}");
                         }
 
 
-                        //disply prediction
-                        string lastMonthName = new DateTime(1, lastMonth + 1, 1).ToString("MMMM");
-                        Console.WriteLine($"Prediction for {lastMonthName}: {avragePrediction}");
-                        //predicted month based on the avrages
-
+       
                         break;
                     }
                 default:
@@ -115,5 +117,14 @@ namespace Project
         }
 
     }
-    
+
+    class EntryCompare : IComparer<(DateTime Date, int Units, string Type)>
+    {
+        public int Compare((DateTime Date, int Units, string Type) First, (DateTime Date, int Units, string Type) Second)
+        {
+
+            //Sorts dates in decending order
+            return Second.Date.CompareTo(First.Date);
+        }
+    }
 }

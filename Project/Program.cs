@@ -44,23 +44,15 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                 Console.WriteLine(user.FilePath); // Here the file path displays
                 Console.ReadKey();
                 
-                //Notification NewNote = new Notification();
+                Notification NewNote = new Notification();
 
-                //string entry = NewNote.GeneratingNote(user.FilePath);
-                //int limit = NewNote.UnitLimit(entry);
-                //Thread thr1 = new Thread(() => NewNote.GeneratingNote(user.FilePath));
-                //Thread thr2 = new Thread(() => NewNote.UnitLimit(entry));
-                //Thread thr3 = new Thread(() => NewNote.Respons(limit));
-
-                //thr1.Start();
-                //thr2.Start();
-                //thr3.Start();
-
-                // Notification
-                // notification note = new notification();
-                // notification.Notification(user.FilePath);
-
-
+                Thread thr1 = new Thread(() => NewNote.GeneratingNote(user.FilePath)); // a Threads that gets the units of the last entry.
+                NewNote.Alert += Message; // Appends the notification message to the event.
+                Thread thr2 = new Thread(() => NewNote.message()); // Thread 2 Triggers the event.
+                thr1.Start();
+                thr1.Join();
+                thr2.Start();
+                
                 Menu userItem = new Menu(userFile.Key);
                 userItem.AddItem("New Entry", () =>
                 {
@@ -132,12 +124,16 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                     });
                     settings.AddItem("Notifications", () =>
                     {
-                        /*
-                        List<string> NoteList = new List<string>();
-                        notification note = new notification();
-                        notification.Notification(user.FilePath);
+                        List<(DateTime date, int units, string type)> list = EntryList.ReadUserData(user.FilePath);
+                        foreach (var item in list)
+                        {
+                            if (item.units < 50)
+                            {
+                                Console.WriteLine(item);
+                                NewNote.message();
+                            }
+                        }
                         Console.ReadLine();
-                        */
                     });
                     settings.AddItem("Exit Settings", userItem.Display );
                     settings.Display();
@@ -146,9 +142,14 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                 userItem.AddItem("Exit", () => { Environment.Exit(0); });
                
                 userItem.Display();
+                void Message() 
+                {
+                    NewNote.Respons(NewNote.GeneratingNote(user.FilePath));
+                }
             });
         }
 
         selectUser.AddItem("End", () => { Environment.Exit(0); });
     }
+   
 }
