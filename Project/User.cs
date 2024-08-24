@@ -297,10 +297,10 @@ namespace FileStorage
             lines = File.ReadAllLines(fileP).ToList(); // reads the texts on the text file.
             lines.Add(EntryText);             //Adds text to a text file.
             File.WriteAllLines(fileP, lines); //Adds text to a text file.
-            foreach (string line in lines)
-                {
-                    Console.WriteLine(line); // loops through all of the text lines on the text file and displays it on the console.
-                }
+            Console.WriteLine("Latest Entry: "+lines[lines.Count - 1]);
+            Console.WriteLine("Second Last Entry: "+lines[lines.Count - 2]);// Displays the last three entries.
+            Console.WriteLine("Third Last Entry: "+lines[lines.Count - 3]);
+            
             Console.ReadLine();
         }
         public static void CreateEntry(string type, int units , DateTime date, string fileP) 
