@@ -95,6 +95,33 @@ Custom interfaces define a contract for methods and properties that can be inher
 - **Why:** Interfaces improve code organization by allowing methods to be inherited into multiple classes, making changes and updates easier to manage.
 - **How:** We will create interfaces for managing messages and notifications. These interfaces will allow us to reuse and easily call different messages from a centralized location, keeping the code clean and modular.
 
+### Built-In Interfaces
+
+- **Built-In Interfaces:** These include interfaces like `IComparable` for sorting objects and `IEnumerable` for iterating through collections.
+
+- **Why:** Built-in interfaces provide standard features that align with .NET framework and language-specific practices, ensuring compatibility and ease of integration.
+- **How:** We will use `IComparer<T>` in the `EntryCompare` class to sort entries by date, leveraging its `Compare` method for efficient data management.
+
+### Polymorphism
+
+- **Polymorphism:** This concept allows objects to be treated as instances of their parent class, enabling method overriding and overloading.
+
+- **Why:** Polymorphism enhances code reusability and flexibility, allowing different classes to be managed through a common interface.
+- **How:** We will use method overloading in the `Navigation` class to handle different parameters for menu items and allow method overriding in the `EntryList` and `Calculations` classes for specific functionality.
+
+### Exceptions
+
+- **Exceptions:** Used for handling errors and exceptional situations, with built-in exceptions like `ArgumentOutOfRangeException` and custom exceptions for application-specific scenarios.
+
+- **Why:** Proper exception handling improves application robustness and error management.
+- **How:** We will implement basic error-checking mechanisms in the `Calculations` class and use built-in exceptions in the `Navigation` class to handle specific errors related to menu selections.
+
+### Security Measures
+
+- **Security Measures:** Techniques to protect the application and its data from unauthorized access, data breaches, and attacks. This includes data validation, access control, and encryption.
+
+- **Why:** Security measures safeguard user data and maintain application integrity and trustworthiness.
+- **How:** We will use encapsulation to protect data within classes, validate user input to prevent invalid data, and implement basic validation in the `CreateUser` method to ensure data integrity and user experience.
 
 ---
 

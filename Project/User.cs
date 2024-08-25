@@ -107,8 +107,6 @@ namespace FileStorage
                     Console.WriteLine("User name can't be blank. Press any key to try again.");
                     Console.ReadKey(); // Wait for user input before continuing
                 }
-                
-
             }
 
             // Create the file path using the username
@@ -133,9 +131,6 @@ namespace FileStorage
         /// </summary>
         public void ClearData()
         {
-            Console.WriteLine(FilePath);
-            Console.ReadKey();
-
             string[] lines = File.ReadAllLines(FilePath);
             int index = 0;
             for (index = 0; index < lines.Length; index++)
@@ -252,6 +247,7 @@ namespace FileStorage
             catch (Exception ex)
             {   
                Console.WriteLine($"Error importing data: {ex.Message}");
+               Console.ReadKey();
             }       
         }
     }

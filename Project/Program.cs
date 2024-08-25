@@ -41,7 +41,6 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
             {
                 user.UserName = userFile.Key;
                 user.FilePath = userFile.Value;
-                Console.WriteLine(user.FilePath); // Here the file path displays
                 Console.ReadKey();
                 
                 Notification NewNote = new Notification();
