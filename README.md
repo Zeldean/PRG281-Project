@@ -16,32 +16,28 @@
 
 ## Table of Contents
 
-1. [Introduction](#introduction)
-   - [Overview](#overview)
-   - [Problem Statement](#problem-statement)
-   - [Project Objectives](#project-objectives)
-   - [Development Approach](#development-approach)
-2. [Topic Identification](#topic-identification)
-   - [Classes and Objects](#classes-and-objects)
-   - [Custom Threads](#custom-threads)
-   - [Custom Events and Delegates](#custom-events-and-delegates)
-   - [Interfaces (Custom and Built-in)](#interfaces-custom-and-built-in)
-   - [Polymorphism](#polymorphism)
-   - [Custom and Built-in Exceptions](#custom-and-built-in-exceptions)
-   - [Security Measures](#security-measures)
-3. [Flowchart](#flowchart)
-4. [Class Diagram](#class-diagram)
-5. [Detailed Project Plan](#detailed-project-plan)
-   - [Project Goals](#project-goals)
-   - [Task Allocation](#task-allocation)
-6. [Requirements Analysis](#requirements-analysis)
-   - [Functional Requirements](#functional-requirements)
-   - [Non-Functional Requirements](#non-functional-requirements)
-7. [Risk Analysis](#risk-analysis)
-   - [Potential Risks](#potential-risks)
-   - [Mitigation Strategies](#mitigation-strategies)
-8. [Conclusion](#conclusion)
-9. [Appendices](#appendices)
+1. [Introduction](#1-introduction)  
+   1.1 [Overview](#overview)  
+   1.2 [Problem Statement](#problem-statement)  
+   1.3 [Project Objectives](#project-objectives)  
+   1.4 [Development Approach](#development-approach)  
+
+2. [Topic Identification](#2-topic-identification)  
+   2.1 [Classes and Objects](#classes-and-objects)  
+   2.2 [Custom Threads](#custom-threads)  
+   2.3 [Custom Events and Delegates](#custom-events-and-delegates)  
+   2.4 [Interfaces (Custom and Built-in)](#interfaces-custom-and-built-in)  
+   2.5 [Polymorphism](#polymorphism)  
+   2.6 [Custom and Built-in Exceptions](#custom-and-built-in-exceptions)  
+   2.7 [Security Measures](#security-measures)  
+
+3. [Flowchart](#3-flowchart)  
+
+4. [Class Diagram](#4-class-diagram)  
+
+5. [Detailed Project Plan](#5-detailed-project-plan)  
+   5.1 [Project Goals](#project-goals)  
+   5.2 [Task Allocation](#task-allocation)
 
 ---
 
@@ -71,36 +67,34 @@ We are utilizing an iterative methodology involving continuous feedback and test
 
 ### Classes and Objects
 
-Classes act as templates for creating and managing objects, holding properties like a user’s ID, name, and electricity meter information. Objects are instances of these classes and contain specific data.
+**Classes** are templates that act as placeholders or references used when creating and inserting objects. On their own, classes don’t hold any information until they are populated with objects. Classes define properties such as a person's ID, name, age, and more.
 
-- **Why:** Using classes and objects allows easy definition, storage, and retrieval of specific information instances.
-- **How:** We will create classes like `User`, `ElectricityMeter`, and `UsageRecord` and insert objects into them, holding user information, power usage data, and related calculations.
+**Objects** are instances of classes that hold specific data. They are created when data is provided for the properties defined in a class, allowing us to reuse the class structure without needing to redefine it every time.
+
+- **Why:** Classes and objects simplify the process of defining, creating, storing, and retrieving information. By defining a class once, we can create multiple instances (objects) that hold user data, power usage information, and perform related calculations.
+- **How:** We will create different classes to manage user data, power usage, menu items, and calculations. Objects will be inserted into these classes, allowing us to track and manage multiple instances of user information and power usage without needing to recreate instances every time.
 
 ### Custom Threads
 
-Threads will handle background tasks such as monitoring meter readings for low units and generating alerts.
+Threads allow programs to perform multiple tasks concurrently, which can improve speed and efficiency. Custom threads run independently from the main thread, allowing certain tasks to execute without affecting the main program flow.
+
+- **Why:** Custom threads enable tasks to run in parallel, preventing the interface from freezing while waiting for other processes to complete.
+- **How:** We will create threads for tasks like retrieving text files containing program data, ensuring the program doesn't slow down while waiting for this information. Threads will also be used to append messages to events and trigger certain events without impacting the main thread.
 
 ### Custom Events and Delegates
 
-Custom events will trigger alerts when predefined conditions, such as low units, are met.
+Events are actions triggered by specific conditions within the program, while delegates define what actions should be performed when those events occur. Events monitor conditions and, when met, execute the delegate’s instructions (e.g., displaying a message).
 
-### Interfaces (Custom and Built-in)
+- **Why:** Using events and delegates reduces code redundancy. Instead of repeatedly checking for conditions manually, events trigger automatically and execute the appropriate delegate, leading to more efficient code execution.
+- **How:** We will implement events such as alerts when power consumption is high or when a mid-year report is due. Delegates will point to methods like `Message`, which will display relevant notifications based on the event’s condition.
 
-- **IReportable:** Custom interface for generating various types of usage reports.
-- **IDisposable:** Built-in interface to manage file handling.
+### Interfaces
 
-### Polymorphism
+Custom interfaces define a contract for methods and properties that can be inherited and implemented by classes. Interfaces allow us to separate method definitions from implementation, providing flexibility and the ability to implement multiple interfaces in a single class.
 
-Different user types (e.g., regular user vs. admin) will inherit from a common base class.
+- **Why:** Interfaces improve code organization by allowing methods to be inherited into multiple classes, making changes and updates easier to manage.
+- **How:** We will create interfaces for managing messages and notifications. These interfaces will allow us to reuse and easily call different messages from a centralized location, keeping the code clean and modular.
 
-### Custom and Built-in Exceptions
-
-Implement exceptions for invalid data entries and handle errors related to file operations.
-
-### Security Measures
-
-- Input validation to ensure data integrity.
-- Data encryption for sensitive information (if applicable).
 
 ---
 
@@ -132,30 +126,33 @@ Implement exceptions for invalid data entries and handle errors related to file 
 
 ### Task Allocation
 
-- **Dean:** 
-   - Design and implement core classes like `User`, `Entry`, `Navigation`
-   - Implement methods for data management like `ReadUserData`, `ImportUserData`, `ExportUserData`, `ClearData`.
-   - Implement methods for file management like `FileExists`, `CreateUserFile`.
-   - Design and implement console app navigation class with the ability to `create menus`, `add menu items`, `exicute code when menu item is selected`, `console disply and clear`.
+- **Dean:**
+  - Design and implement core classes like `User`, `Entry`, `Navigation`
+  - Implement methods for data management like `ReadUserData`, `ImportUserData`, `ExportUserData`, `ClearData`.
+  - Implement methods for file management like `FileExists`, `CreateUserFile`.
+  - Design and implement console app navigation class with the ability to `create menus`, `add menu items`, `exicute code when menu item is selected`, `console disply and clear`.
 - **Hermanus:**
-   - Implement data reading functionality.
+  - Implement `EntryList` class: Manages methods that retrieve information from a text file and display it.
+  - Implement `ReadEntries` method: Retrieves entries from the text file, adds them to a list, and allows them to be displayed and modified.
+  - Implement Inheritance: Allows classes to inherit from the `EntryList` class and use its methods.
+
 - **Jan-Paul Seaman:**  
-   - Implement `Calculation` class: Inherits from `User` class and manages data calculations.
-   - Implement `TotalUsage` method: Generate reports for different periods (Weekly, Monthly, Yearly).
-   - Implement `CalculateTotal` method: Handle complex calculation logic for "Type1" and "Type2" entries.
-   - Handle entry processing: Includes filtering, grouping by month, and predicting usage based on previous data.
-   - Implement `EntryCompare` class: Inherits the built-in interface `IComparable` to sort entries for the yearly report, placing the newest month at the top of the list.
-   - **Additional Details:**
-     - **Constructor:** Initializes the class, uses the `ReadUserData` method from the `EntryList` class, and calculates total usage based on the report type.
-     - `EntryCompare` class: Sorts entries in descending order based on the date.
+  - Implement `Calculation` class: Inherits from `User` class and manages data calculations.
+  - Implement `TotalUsage` method: Generate reports for different periods (Weekly, Monthly, Yearly).
+  - Implement `CalculateTotal` method: Handle complex calculation logic for "Type1" and "Type2" entries.
+  - Handle entry processing: Includes filtering, grouping by month, and predicting usage based on previous data.
+  - Implement `EntryCompare` class: Inherits the built-in interface `IComparable` to sort entries for the yearly report, placing the newest month at the top of the list.
+  - **Additional Details:**
+    - **Constructor:** Initializes the class, uses the `ReadUserData` method from the `EntryList` class, and calculates total usage based on the report type.
+    - `EntryCompare` class: Sorts entries in descending order based on the date.
 - **Stiaan:**
-   - Implement `Notification` class: Manages the methods that provide notification messages.
-   - Implement `GeneratingNote` method: Reads through the text file and returns the units from the last entry.
-   - Implement `Respons` method: Uses the units returned from the `GeneratingNote` method to check if the units are less than 50 units; if true, it generates a notification message.
-   - Implement `Message` method: Stores the response from the `Respons` method.
-   - Implement `MultiThreading & EventHandling`: The `GeneratingNote` method is passed to `Thread1`, which runs and retrieves the units from the last entry. When `Thread1` finishes, `Thread2` runs. `Thread2` contains the event that points to the `Note` delegate, which uses the `Message` method.
-   - Implement `CreateEntry` method: Takes input from the user and inserts the input as a string into the text file at the bottom of the page. Takes current units input and purchased units input.
-   - Class Diagram
+  - Implement `Notification` class: Manages the methods that provide notification messages.
+  - Implement `GeneratingNote` method: Reads through the text file and returns the units from the last entry.
+  - Implement `Respons` method: Uses the units returned from the `GeneratingNote` method to check if the units are less than 50 units; if true, it generates a notification message.
+  - Implement `Message` method: Stores the response from the `Respons` method.
+  - Implement `MultiThreading & EventHandling`: The `GeneratingNote` method is passed to `Thread1`, which runs and retrieves the units from the last entry. When `Thread1` finishes, `Thread2` runs. `Thread2` contains the event that points to the `Note` delegate, which uses the `Message` method.
+  - Implement `CreateEntry` method: Takes input from the user and inserts the input as a string into the text file at the bottom of the page. Takes current units input and purchased units input.
+  - Class Diagram
 
 ---
 
