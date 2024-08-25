@@ -200,4 +200,5 @@ This documentation outlines the key components of our electricity usage tracking
 ## 9. Appendices
 
 [**Draw io**](https://app.diagrams.net): Used to create flow chart and class diagram.
+
 [**W3 Schools**](https://www.w3schools.com): Used to find spesific syntax for code.
