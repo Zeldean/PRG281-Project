@@ -93,16 +93,36 @@ namespace Navigation
                     Console.WriteLine($"{i + 1}. {items[i].Option}");
                 }
 
-                // Handle user input and execute the corresponding action
-                if (int.TryParse(Console.ReadLine(), out int choice) && choice > 0 && choice <= items.Count)
-                {
-                    items[choice - 1].Action(); // Execute the selected item's action.
-                }
-                else
-                {
-                    Console.WriteLine("Invalid choice, try again.");
-                    Console.ReadKey(); // Pause to show the invalid message before refreshing the menu.
-                }
+                  ///Built in exception here:
+              try
+              {
+                  // Handle user input and execute the corresponding action
+                  if (int.TryParse(Console.ReadLine(), out int choice))
+                  {
+                      // Check if the choice is out of range
+                      if (choice < 1 || choice > items.Count)
+                      {
+                          throw new ArgumentOutOfRangeException(nameof(choice), "Selection is out of the valid range.");
+                      }
+
+                      // Execute the selected item's action.
+                      items[choice - 1].Action();
+                  }
+                  else
+                  {
+                      Console.WriteLine("Invalid input, please enter a number.");
+                  }
+                  }
+                 catch (ArgumentOutOfRangeException ex)
+                 {
+                    Console.WriteLine($"Error: {ex.Message}");
+                 }
+                  catch (Exception ex)
+                  {
+                      Console.WriteLine($"An unexpected error occurred: {ex.Message}");
+                  }
+
+                  Console.ReadKey(); // Pause to show the message before refreshing the menu.
             }
         }
     }
