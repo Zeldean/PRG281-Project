@@ -106,13 +106,13 @@ Implement exceptions for invalid data entries and handle errors related to file 
 
 ## 3. Flowchart
 
-![Flow Chart](Project/bin/Debug/net8.0/Media/FlowChart_1.svg)
+![Flow Chart](Project/bin/Debug/net8.0/Media/FlowChart.svg)
 
 ---
 
 ## 4. Class Diagram
 
-![Class Diagram](Project/bin/Debug/net8.0/Media/ClassDiagram.png)
+![Class Diagram](Project/bin/Debug/net8.0/Media/ClassDiagram.svg)
 
 ---
 
