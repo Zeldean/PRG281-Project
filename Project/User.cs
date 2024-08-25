@@ -322,7 +322,7 @@ namespace FileStorage
         }        
     }
 
-    class Notification
+    class Notification:INotificationMethods
     {
         public delegate void Note();
         public event Note Alert;
