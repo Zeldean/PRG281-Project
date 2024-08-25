@@ -56,44 +56,66 @@ namespace Project
                     }
                 case "Yearly":
                     {
-                        Console.Clear();
-                        Console.WriteLine("Yearly Report\n==========================================================");
-                        Console.WriteLine("Press any key to go back to previous page\n");
-                        // Sort the list using IComparable interface in the EntryCompare class.
-                        entries.Sort(new EntryCompare());
+ Console.Clear();
+    Console.WriteLine("Yearly Report\n==========================================================");
+    Console.WriteLine("Press any key to go back to the previous page\n");
 
-                        // Calculate and display the prediction for the next month of this year
-                        int lastMonth = entries.Max(entry => entry.Date.Month); // Get the last recorded month from the list
-                        double totalForPrediction = CalculateTotal(entries);
-                        int amountOfMonths = entries.Select(entry => new { entry.Date.Year, entry.Date.Month }).Count();
-                        double averagePrediction = totalForPrediction / amountOfMonths;
-                        string lastMonthName = new DateTime(DateTime.Now.Year, lastMonth + 1, 1).ToString("MMMM");
-                        Console.WriteLine($"Prediction for {lastMonthName} {DateTime.Now.Year}: {averagePrediction:F2}");
-                        Console.WriteLine();
+    // Sort the list using the EntryCompare class to ensure descending order by date.
+    entries.Sort(new EntryCompare());
 
+    // Filter the entries for the current year
+    var currentYearEntries = entries.Where(entry => entry.Date.Year == DateTime.Now.Year).ToList();
 
+    if (currentYearEntries.Count > 0)
+    {
+        // Calculate and display the prediction for the next month of this year
+        double totalForPrediction = CalculateTotal(currentYearEntries);
+        int monthsInYear = currentYearEntries.Select(entry => entry.Date.Month).Distinct().Count();
+        double averagePrediction = totalForPrediction / monthsInYear;
 
-                        // Group entries by year
-                        var groupedByYear = entries.GroupBy(entry => entry.Date.Year);
+        // Calculate the next month and handle year transition
+        int currentMonth = DateTime.Now.Month;
+        int nextMonth = currentMonth + 1;
+        int yearForNextMonth = DateTime.Now.Year;
 
-                        foreach (var yearGroup in groupedByYear) //Loops through the years to then loop by month to display the data corectly
-                        {
-                            Console.WriteLine($"{yearGroup.Key}:");
+        //For error handeling if the Current month is December
+        if (nextMonth > 12)
+        {
+            nextMonth = 1; // January of the next year
+            yearForNextMonth++;
+        }
 
-                            // Group entries by month
-                            var groupedByMonth = yearGroup.GroupBy(entry => entry.Date.Month);
+        // Display prediction
+        string nextMonthName = new DateTime(yearForNextMonth, nextMonth, 1).ToString("MMMM");
+        Console.WriteLine($"Prediction for {nextMonthName} {yearForNextMonth}: {averagePrediction}");
+        Console.WriteLine();
+    }
+    else
+    {
+        Console.WriteLine("No entries available for the current year.");
+    }
 
-                            foreach (var monthGroup in groupedByMonth)
-                            {
-                                double MonthlyUsage = CalculateTotal(monthGroup.ToList());
-                                string monthName = new DateTime(yearGroup.Key, monthGroup.Key, 1).ToString("MMMM");
-                                Console.WriteLine($"Total usage for {monthName} {yearGroup.Key}: {MonthlyUsage:F2}");
-                            }
+    // Group entries by year and then by month, and display them in descending order
+    var groupedByYear = entries.GroupBy(entry => entry.Date.Year);
 
-                            Console.WriteLine();
-                        }
+    foreach (var yearGroup in groupedByYear.OrderByDescending(g => g.Key))
+    {
+        Console.WriteLine($"{yearGroup.Key}:");
 
-                        break;
+        // Group entries by month
+        var groupedByMonth = yearGroup.GroupBy(entry => entry.Date.Month);
+
+        foreach (var monthGroup in groupedByMonth.OrderByDescending(g => g.Key))
+        {
+            double monthlyUsage = CalculateTotal(monthGroup.ToList());
+            string monthName = new DateTime(yearGroup.Key, monthGroup.Key, 1).ToString("MMMM yyyy");
+            Console.WriteLine($"{monthName}: {monthlyUsage}");
+        }
+
+        Console.WriteLine();
+    }
+
+    break;
                     }
                 default:
                     {
