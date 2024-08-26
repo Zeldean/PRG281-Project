@@ -1,6 +1,6 @@
 # PRG 281 Project
 
-## Title Page
+## Milestone 1
 
 **Project Title:** Electricity Usage Tracking System for Prepaid Meters  
 **Team Members:**
