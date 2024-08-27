@@ -1,19 +1,4 @@
-﻿/*
- * ===========================================
- * Author: Zeldean
- * Project: PRG281 Project
- * Date: August 19, 2024
- * ===========================================
- *   ______      _      _                     
- *  |___  /     | |    | |                    
- *     / /  ___ | |  __| |  ___   __ _  _ __  
- *    / /  / _ \| | / _` | / _ \ / _` || '_ \ 
- *   / /__|  __/| || (_| ||  __/| (_| || | | |
- *  /_____|\___||_| \__,_| \___| \__,_||_| |_|
- *   
- * ===========================================
- */
-using Project;
+﻿using Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -107,8 +92,6 @@ namespace FileStorage
                     Console.WriteLine("User name can't be blank. Press any key to try again.");
                     Console.ReadKey(); // Wait for user input before continuing
                 }
-                
-
             }
 
             // Create the file path using the username
@@ -133,9 +116,6 @@ namespace FileStorage
         /// </summary>
         public void ClearData()
         {
-            Console.WriteLine(FilePath);
-            Console.ReadKey();
-
             string[] lines = File.ReadAllLines(FilePath);
             int index = 0;
             for (index = 0; index < lines.Length; index++)
@@ -252,6 +232,7 @@ namespace FileStorage
             catch (Exception ex)
             {   
                Console.WriteLine($"Error importing data: {ex.Message}");
+               Console.ReadKey();
             }       
         }
     }
@@ -297,11 +278,11 @@ namespace FileStorage
             lines = File.ReadAllLines(fileP).ToList(); // reads the texts on the text file.
             lines.Add(EntryText);             //Adds text to a text file.
             File.WriteAllLines(fileP, lines); //Adds text to a text file.
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("Latest Entry: "+lines[lines.Count - 1]);
             Console.WriteLine("Second Last Entry: "+lines[lines.Count - 2]);// Displays the last three entries.
             Console.WriteLine("Third Last Entry: "+lines[lines.Count - 3]);
-            
-            Console.ReadLine();
+            Console.ForegroundColor = ConsoleColor.White;
         }
         public static void CreateEntry(string type, int units , DateTime date, string fileP) 
         {            
@@ -336,7 +317,9 @@ namespace FileStorage
         {
             if (unitlimit < 50)
             {
-               Console.WriteLine("Notification: DANGER! Current number of units is less then 50 units. Please purchase more units!\n");   
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("Notification: DANGER! Current number of units is less then 50 units. Please purchase more units!\n");
+                Console.ForegroundColor = ConsoleColor.White;
             }
         }
         public void message() // Calls the event that generates the a notification.

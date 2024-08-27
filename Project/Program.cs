@@ -41,8 +41,6 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
             {
                 user.UserName = userFile.Key;
                 user.FilePath = userFile.Value;
-                Console.WriteLine(user.FilePath); // Here the file path displays
-                Console.ReadKey();
                 
                 Notification NewNote = new Notification();
 
@@ -53,6 +51,7 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                 thr1.Join();
                 thr2.Start();
                 
+
                 Menu userItem = new Menu(userFile.Key);
                 userItem.AddItem("New Entry", () =>
                 {
@@ -73,7 +72,9 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                     Console.Clear();
                    
                     Console.WriteLine("All History:");
+                    Console.ForegroundColor = ConsoleColor.Green;
                     EntryList entryList = new EntryList(user.FilePath);
+                    Console.ForegroundColor = ConsoleColor.White;
                     Console.ReadKey();
                     userItem.Display();
                 });
@@ -84,19 +85,19 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                     {
                         // Logic to genarate a Weekly report
                         Calculation calculation = new Calculation(user.FilePath, "Weekly");
-                        Console.ReadLine();
+                        
                     });
                     reports.AddItem("Monthly", () =>
                     {
                         // Logic to genarate a Mounthly report
                         Calculation calculation = new Calculation(user.FilePath, "Monthly");
-                        Console.ReadLine();
+                       
                     });
                     reports.AddItem("Yearly", () =>
                     {
                         // Logic to genarate a Yearly report
                         Calculation calculation = new Calculation(user.FilePath, "Yearly");
-                        Console.ReadLine();
+                        
                     });
                     reports.AddItem("Back", userItem.Display);
                     reports.Display();
@@ -129,15 +130,17 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                         {
                             if (item.units < 50)
                             {
+                                Console.ForegroundColor = ConsoleColor.Green;
                                 Console.WriteLine(item);
                                 NewNote.message();
+                               
+
                             }
                         }
-                        Console.ReadLine();
+                       
                     });
                     settings.AddItem("Exit Settings", userItem.Display );
-                    settings.Display();
-                    
+                    settings.Display();                    
                 });
                 userItem.AddItem("Exit", () => { Environment.Exit(0); });
                
@@ -148,8 +151,6 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                 }
             });
         }
-
         selectUser.AddItem("End", () => { Environment.Exit(0); });
-    }
-   
+    }   
 }
