@@ -74,11 +74,12 @@
               "Title": "User.cs",
               "DocumentMoniker": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\User.cs",
               "RelativeDocumentMoniker": "Project\\User.cs",
-              "ToolTip": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\User.cs",
-              "RelativeToolTip": "Project\\User.cs",
-              "ViewState": "AgIAANwAAAAAAAAAAAAowDABAABdAAAAAAAAAA==",
+              "ToolTip": "C:\\Users\\deanv\\Documents\\Repos\\PRG281-Project\\Project\\User.cs*",
+              "RelativeToolTip": "Project\\User.cs*",
+              "ViewState": "AgIAAD0BAAAAAAAAAAAcwEYBAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-08-24T12:44:47.355Z"
+              "WhenOpened": "2024-08-24T12:44:47.355Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",

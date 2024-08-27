@@ -144,10 +144,9 @@ namespace Project
         // Method to calculate the total usage with consideration to Type2 entries
         private List<(DateTime, int, string, int)> CalculateTotal(List<(DateTime Date, int Units, string Type)> entries)
         {
-            if (entries == null || entries.Count == 0) //Error handling for if the entries list is empty
+            //Error handling for if the entries list is empty
+            if (entries == null || entries.Count == 0)
                 return null;
-
-            double totalDifference = 0;
 
             Tuple<int, int> previousValueSet = new Tuple<int, int>(0, 0);
             int index = 0;
@@ -161,7 +160,6 @@ namespace Project
                 index++;
             }
 
-            int type1BeforeType2 = 0;
             List<(DateTime, int, string, int)> usageList = new List<(DateTime, int, string, int)>();
 
             int preVal = previousValueSet.Item1, totalUsage = 0;

@@ -293,17 +293,6 @@ namespace FileStorage
                 Console.WriteLine("Third Last Entry: " + entryList[entryList.Count - 3]);
             }
             Console.ForegroundColor = ConsoleColor.White;
-
-            /* List<string> lines = new List<string>();
-             lines = File.ReadAllLines(fileP).ToList(); // reads the texts on the text file.
-             lines.Add(EntryText);             //Adds text to a text file.
-             File.WriteAllLines(fileP, lines); //Adds text to a text file.
-             Console.ForegroundColor = ConsoleColor.Green;
-             Console.WriteLine("Latest Entry: "+lines[lines.Count - 1]);
-             Console.WriteLine("Second Last Entry: "+lines[lines.Count - 2]);// Displays the last three entries.
-             Console.WriteLine("Third Last Entry: "+lines[lines.Count - 3]);
-             Console.ForegroundColor = ConsoleColor.White;
-            */
         }
         public static void CreateEntry(string type, int units , DateTime date, string fileP) 
         {            
@@ -324,7 +313,7 @@ namespace FileStorage
         }        
     }
 
-    class Notification:INotificationMethods
+    class Notification: INotificationMethods
     {
         public delegate void Note();
         public event Note Alert;
