@@ -172,7 +172,7 @@ namespace FileStorage
                     }
                 }
                 Console.WriteLine($"File successfully saved to: {filePath}");
-                Console.ReadKey();
+               
             }
             catch (Exception ex)
             {
@@ -225,7 +225,7 @@ namespace FileStorage
                         Console.WriteLine($"{data.type} + {data.units} + {data.date}");
                     }
                     Console.WriteLine("Data imported successfully.");
-                    Console.ReadKey();
+                    
                 }            
             }
             catch (Exception ex)
@@ -273,10 +273,11 @@ namespace FileStorage
             NewEntry.CurentUnits(date, units, type);
             string EntryText="("+NewEntry.EntryDate.ToString()+"),"+NewEntry.EntryUnits.ToString()+","+NewEntry.EntryType.ToString(); // creates the string that will be used as a entry.
 
-            var entryList = EntryList.ReadUserData(fileP);
+          
             var tempList = new List<string>();
             tempList.Add(EntryText);
             File.AppendAllLines(fileP, tempList);
+            var entryList = EntryList.ReadUserData(fileP);
             int count = entryList.Count;
             Console.ForegroundColor = ConsoleColor.Green;
             if (count >= 1)

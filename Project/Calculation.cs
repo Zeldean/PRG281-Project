@@ -71,7 +71,7 @@ namespace Project
                     {
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Monthly Report:\n==========================================================");
+                        Console.WriteLine("Monthly Report:\n==========================================================\n");
                         
                         // Filter the entries for the current month and displays the total usage for the month
                         var currentMonthEntries = entries.Where(entry => entry.Date.Month == DateTime.Now.Month && entry.Date.Year == DateTime.Now.Year).ToList();
@@ -81,7 +81,7 @@ namespace Project
 
                         double mounthlyUseage = UseageEstimation(currentMonthEntriesUseage[0].Item4, daysInMounth, currentMonthEntriesUseage);
 
-                        Console.WriteLine($"Total Monthly usage for {DateTime.Now.ToString("MMMM")}: {mounthlyUseage:F2} \n");
+                        Console.WriteLine($"Total Monthly usage for {DateTime.Now.ToString("MMMM")}: {mounthlyUseage:F2} ");
                         Console.WriteLine("\n==========================================================\nPress any key to go back to the previous page\n");
                         Console.ForegroundColor = ConsoleColor.White;
                         break;
