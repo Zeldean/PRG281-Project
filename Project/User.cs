@@ -272,16 +272,37 @@ namespace FileStorage
             Entry NewEntry = new Entry();
             NewEntry.CurentUnits(date, units, type);
             string EntryText="("+NewEntry.EntryDate.ToString()+"),"+NewEntry.EntryUnits.ToString()+","+NewEntry.EntryType.ToString(); // creates the string that will be used as a entry.
-            
-            List<string> lines = new List<string>();
-            lines = File.ReadAllLines(fileP).ToList(); // reads the texts on the text file.
-            lines.Add(EntryText);             //Adds text to a text file.
-            File.WriteAllLines(fileP, lines); //Adds text to a text file.
+
+            var entryList = EntryList.ReadUserData(fileP);
+            var tempList = new List<string>();
+            tempList.Add(EntryText);
+            File.AppendAllLines(fileP, tempList);
+            int count = entryList.Count;
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine("Latest Entry: "+lines[lines.Count - 1]);
-            Console.WriteLine("Second Last Entry: "+lines[lines.Count - 2]);// Displays the last three entries.
-            Console.WriteLine("Third Last Entry: "+lines[lines.Count - 3]);
+            if (count >= 1)
+            {
+                Console.WriteLine("Latest Entry: " + entryList[entryList.Count - 1]);
+            }
+            if (count >= 2)
+            {
+                Console.WriteLine("Second Last Entry: " + entryList[entryList.Count - 2]);// Displays the last three entries.
+            }
+            if (count >= 3)
+            {
+                Console.WriteLine("Third Last Entry: " + entryList[entryList.Count - 3]);
+            }
             Console.ForegroundColor = ConsoleColor.White;
+
+            /* List<string> lines = new List<string>();
+             lines = File.ReadAllLines(fileP).ToList(); // reads the texts on the text file.
+             lines.Add(EntryText);             //Adds text to a text file.
+             File.WriteAllLines(fileP, lines); //Adds text to a text file.
+             Console.ForegroundColor = ConsoleColor.Green;
+             Console.WriteLine("Latest Entry: "+lines[lines.Count - 1]);
+             Console.WriteLine("Second Last Entry: "+lines[lines.Count - 2]);// Displays the last three entries.
+             Console.WriteLine("Third Last Entry: "+lines[lines.Count - 3]);
+             Console.ForegroundColor = ConsoleColor.White;
+            */
         }
         public static void CreateEntry(string type, int units , DateTime date, string fileP) 
         {            
@@ -307,9 +328,13 @@ namespace FileStorage
         public delegate void Note();
         public event Note Alert;
         public int GeneratingNote(string fileP)
-        { 
+        {
             List<(DateTime date, int units, string type)> lines = EntryList.ReadUserData(fileP); //Generates a list of all the text entries using the EntryList class.
-            return lines[lines.Count-1].units; // Gets the last entry in the list.
+            if (lines.Count > 0)
+            {
+                return lines[lines.Count - 1].units; // Gets the last entry in the list.
+            }
+            return 1000;            
         }
         
         public void Respons(int unitlimit)  // if Current units are less then 50 it will provide a notification.
