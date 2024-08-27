@@ -12,9 +12,9 @@ namespace Navigation
         public Action Action { get; } // The action to be executed when this menu item is selected.
 
         /// <summary>
-        /// Constructor to create a menu item with the specified option text and associated action.
+        /// The constructor will create a menu item with the specified option text and associated action.
         /// </summary>
-        /// <param name="option">The option text displayed to the user.</param>
+        /// <param name="option">The option text is displayed to the user.</param>
         /// <param name="action">The action to execute when the item is selected.</param>
         public MenuItem(string option, Action action)
         {
@@ -32,7 +32,7 @@ namespace Navigation
         private List<MenuItem> items = new List<MenuItem>(); // A list to store all menu items.
 
         /// <summary>
-        /// Constructor to create a menu with the specified title.
+        /// The constructor will create a menu with the specified title.
         /// </summary>
         /// <param name="menuTitle">The title of the menu.</param>
         public Menu(string menuTitle)
@@ -43,7 +43,7 @@ namespace Navigation
         /// <summary>
         /// Adds an item to the menu that performs a specific action.
         /// </summary>
-        /// <param name="option">The option text displayed to the user.</param>
+        /// <param name="option">The option text is displayed to the user.</param>
         /// <param name="action">The action to execute when the item is selected.</param>
         public void AddItem(string option, Action action)
         {
@@ -53,7 +53,7 @@ namespace Navigation
         /// <summary>
         /// Adds a sub-menu as an item in the current menu, allowing for nested navigation.
         /// </summary>
-        /// <param name="option">The option text displayed to the user.</param>
+        /// <param name="option">The option text is displayed to the user.</param>
         /// <param name="subMenu">The sub-menu to be displayed when the item is selected.</param>
         public void AddItem(string option, Menu subMenu)
         {
@@ -62,7 +62,7 @@ namespace Navigation
 
         /// <summary>
         /// Displays the menu and handles user input to select menu items.
-        /// The menu continues to loop until an action is performed that breaks out of it.
+        /// The menu continues to loop until an action that breaks out of it is performed.
         /// </summary>
         public void Display()
         {
@@ -77,11 +77,9 @@ namespace Navigation
                 // Display each menu item
                 for (int i = 0; i < items.Count; i++)
                 {
-
                     Console.WriteLine($"{i + 1}. {items[i].Option}");
                 }
-
-                  ///Built in exception here:
+                  
               try
               {
                   // Handle user input and execute the corresponding action
@@ -110,7 +108,7 @@ namespace Navigation
                       Console.WriteLine($"An unexpected error occurred: {ex.Message}");
                   }
 
-                  Console.ReadKey(); // Pause to show the message before refreshing the menu.
+                  Console.ReadKey();
             }
         }
     }
