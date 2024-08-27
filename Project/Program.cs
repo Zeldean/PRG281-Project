@@ -41,6 +41,8 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
             {
                 user.UserName = userFile.Key;
                 user.FilePath = userFile.Value;
+                Console.WriteLine(user.FilePath); // Here the file path displays
+                Console.ReadKey();
                 
                 Notification NewNote = new Notification();
 
@@ -134,7 +136,8 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                         Console.ReadLine();
                     });
                     settings.AddItem("Exit Settings", userItem.Display );
-                    settings.Display();                    
+                    settings.Display();
+                    
                 });
                 userItem.AddItem("Exit", () => { Environment.Exit(0); });
                
@@ -145,6 +148,8 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                 }
             });
         }
+
         selectUser.AddItem("End", () => { Environment.Exit(0); });
-    }   
+    }
+   
 }

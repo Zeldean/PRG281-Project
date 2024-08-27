@@ -1,4 +1,19 @@
-﻿using Project;
+﻿/*
+ * ===========================================
+ * Author: Zeldean
+ * Project: PRG281 Project
+ * Date: August 19, 2024
+ * ===========================================
+ *   ______      _      _                     
+ *  |___  /     | |    | |                    
+ *     / /  ___ | |  __| |  ___   __ _  _ __  
+ *    / /  / _ \| | / _` | / _ \ / _` || '_ \ 
+ *   / /__|  __/| || (_| ||  __/| (_| || | | |
+ *  /_____|\___||_| \__,_| \___| \__,_||_| |_|
+ *   
+ * ===========================================
+ */
+using Project;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,6 +107,8 @@ namespace FileStorage
                     Console.WriteLine("User name can't be blank. Press any key to try again.");
                     Console.ReadKey(); // Wait for user input before continuing
                 }
+                
+
             }
 
             // Create the file path using the username
@@ -116,6 +133,9 @@ namespace FileStorage
         /// </summary>
         public void ClearData()
         {
+            Console.WriteLine(FilePath);
+            Console.ReadKey();
+
             string[] lines = File.ReadAllLines(FilePath);
             int index = 0;
             for (index = 0; index < lines.Length; index++)
@@ -232,7 +252,6 @@ namespace FileStorage
             catch (Exception ex)
             {   
                Console.WriteLine($"Error importing data: {ex.Message}");
-               Console.ReadKey();
             }       
         }
     }
