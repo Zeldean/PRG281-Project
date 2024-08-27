@@ -7,14 +7,10 @@ using System.Threading.Tasks;
 
 namespace Project 
 {
-
-
     internal class EntryList : User
-    {
-       
+    {       
         public EntryList(string filepath):base(filepath)
-        {
-           
+        {           
             ReadEntries(filepath);
         }
         public static List<(DateTime date, int units, string type)> ReadUserData(string filePath)
@@ -60,11 +56,7 @@ namespace Project
             }
             return list;
         }
-
-       
-
-
-
+        
         public void ReadEntries(string filePath) 
         {
             
@@ -73,14 +65,11 @@ namespace Project
 
             Fulltxt = File.ReadAllLines(filePath).ToList();
 
-            //string toBeSearched = ",";
-
             bool data = false;
             foreach (string line in Fulltxt)
             {
                 if (data)
                 {
-                    //string Seper = line.Substring(line.IndexOf(toBeSearched) + toBeSearched.Length, 4);
                     entries.Add(line);
                 }
                 else if (line == "ENTRIES")
@@ -93,40 +82,6 @@ namespace Project
             {
                 Console.WriteLine(item);
             }
-
         }
-
-
-
-
-
-        //public List<String> ReadUnits(string filePath)
-        //{
-        //    List<String> Units = new List<String>();
-        //    List<String> Fulltxt = new List<String>();
-
-        //    Fulltxt = File.ReadAllLines(filePath).ToList();
-
-        //    string toBeSearched = ",";
-
-        //    bool data = false;
-        //    foreach (string line in Fulltxt)
-        //    {
-        //        if (data)
-        //        {
-        //            string Seper = line.Substring(line.IndexOf(toBeSearched) + toBeSearched.Length, 4);
-        //            Units.Add(Seper);
-
-        //        }
-        //        else if (line == "ENTRIES")
-        //        {
-        //            data = true;
-        //        }
-        //    }
-        //    return Units;
-        //}
-
-
-
     }
 }
