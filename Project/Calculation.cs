@@ -18,9 +18,6 @@ namespace Project
             // Calculate and display the total usage based on the specified report type
             TotalUsage(AllList, reportType);
         }
-
-
-
         public double UseageEstimation(int endRange, int span, List<(DateTime, int, string, int)> useageList)
         {
             //double tempUsage = useageList[endRange].Item4 - useageList[0].Item4;
@@ -29,10 +26,6 @@ namespace Project
             double spanUseage = Math.Round(tempUsage / (days / span));
             return spanUseage;
         }
-
-
-
-
         // Method to calculate and display the total usage based on the report type selected by the user
         public void TotalUsage(List<(DateTime Date, int Units, string Type)> entries, string ReportType)
         {
@@ -54,13 +47,6 @@ namespace Project
                         // Take the last 7 entries from the list and display the total usage for those 7 entries
                         
                         List<(DateTime, int, string, int)> useageList = CalculateTotal(entries.Where(entry => entry.Date.Month == DateTime.Now.Month && entry.Date.Year == DateTime.Now.Year).ToList());
-
-
-
-                        //foreach (var entry in useageList)
-                        //{
-                        //    Console.WriteLine($"{entry.Item1}, {entry.Item2}, {entry.Item3}, {entry.Item4}");
-                        //}
 
                         int count = 0;
                         int stopIndex;
@@ -93,11 +79,6 @@ namespace Project
                         List<(DateTime, int, string, int)> currentMonthEntriesUseage = CalculateTotal(entries.Where(entry => entry.Date.Month == DateTime.Now.Month && entry.Date.Year == DateTime.Now.Year).ToList());
                         int daysInMounth = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month);
 
-                        //foreach (var entry in currentMonthEntriesUseage)
-                        //{
-                        //    Console.WriteLine($"{entry.Item1}, {entry.Item2}, {entry.Item3}, {entry.Item4}");
-                        //}
-
                         double mounthlyUseage = UseageEstimation(currentMonthEntriesUseage[0].Item4, daysInMounth, currentMonthEntriesUseage);
 
                         Console.WriteLine($"Total Monthly usage for {DateTime.Now.ToString("MMMM")}: {mounthlyUseage:F2} \n");
@@ -110,22 +91,13 @@ namespace Project
 
                         Console.Clear();
                         Console.ForegroundColor = ConsoleColor.Green;
-                        Console.WriteLine("Yearly Report:\n==========================================================\n");
-                        
+                        Console.WriteLine("Yearly Report:\n==========================================================\n");                        
 
-                        // Sort the list using the EntryCompare class to ensure acending order order by date.
+                        // Sort the list using the EntryCompare class to ensure ascending order order by date.
                         entries.Sort(new EntryCompare());
 
                         // Filter the entries for the current year
                         List<(DateTime, int, string, int)> currentYearEntries = CalculateTotal(entries.Where(entry => entry.Date.Year == DateTime.Now.Year).ToList());
-
-
-                        //foreach (var entry in currentYearEntries)
-                        //{
-                        //    Console.WriteLine($"{entry.Item1}, {entry.Item2}, {entry.Item3}, {entry.Item4}");
-
-                        //}
-
 
                         var groupedByMonth = currentYearEntries.GroupBy(entry => entry.Item1.Month).ToList();
                         double Sum = 0; 
@@ -133,7 +105,7 @@ namespace Project
                         {
                             int daysInMonth = DateTime.DaysInMonth(DateTime.Now.Year, monthGroup.Key);
 
-                            // Convert the monthGroup to a list
+                            // Convert the month group to a list
                             List<(DateTime, int, string, int)> monthGroupList = monthGroup.ToList();
 
                             double mounthlyUsageForYear = UseageEstimation(0, daysInMonth, monthGroupList);
@@ -149,8 +121,6 @@ namespace Project
                         DateTime nextMonth = now.AddMonths(1);
                         int nextMonthNumber = nextMonth.Month;
                         int nextYear = nextMonth.Year;
-
-
                         
                         string nextMonthName = new DateTime(nextYear, nextMonthNumber, 1).ToString("MMMM yyyy");
                         
@@ -174,7 +144,7 @@ namespace Project
         // Method to calculate the total usage with consideration to Type2 entries
         private List<(DateTime, int, string, int)> CalculateTotal(List<(DateTime Date, int Units, string Type)> entries)
         {
-            if (entries == null || entries.Count == 0) //Error handeling for if the entries list is empty
+            if (entries == null || entries.Count == 0) //Error handling for if the entries list is empty
                 return null;
 
             double totalDifference = 0;
