@@ -14,8 +14,7 @@ namespace FileStorage
         private string? userName;
         private string? password;
         private string? filePath;
-        private string? directoryPath;
-        
+        private string? directoryPath;        
 
         // Encapsulation
         public string DirectoryPath { get => directoryPath; set => directoryPath = value; }
@@ -28,6 +27,7 @@ namespace FileStorage
         {
             this.DirectoryPath = directoryPath;
         }
+        
         // Methods
         public void UserStorageExists()
         {
@@ -73,7 +73,7 @@ namespace FileStorage
 
                 Console.WriteLine("Enter Meter code:");
                 Password = Console.ReadLine();
-
+                // Validation
                 if (!string.IsNullOrWhiteSpace(UserName)) // Check that the username is not blank or whitespace
                 {
                     break;
@@ -81,15 +81,15 @@ namespace FileStorage
                 else
                 {
                     Console.WriteLine("User name can't be blank. Press any key to try again.");
-                    Console.ReadKey(); // Wait for user input before continuing
+                    Console.ReadKey();
                 }
-                if (!string.IsNullOrWhiteSpace(Password)) // Check that the username is not blank or whitespace
+                if (!string.IsNullOrWhiteSpace(Password))
                 {
                     break;
                 }
                 else
                 {
-                    Console.WriteLine("User name can't be blank. Press any key to try again.");
+                    Console.WriteLine("Box code can't be blank. Press any key to try again.");
                     Console.ReadKey(); // Wait for user input before continuing
                 }
             }
@@ -198,7 +198,6 @@ namespace FileStorage
                     // Read the CSV file line by line
                     string[] lines = File.ReadAllLines(fullFilePath);
 
-                    // Skip the header (assuming the first line is the header)
                     for (int i = 1; i < lines.Length; i++)
                     {
                         string[] parts = lines[i].Split(',');
@@ -210,7 +209,7 @@ namespace FileStorage
                             int units = int.Parse(parts[1]);
                             string type = parts[2];
 
-                            // Add the parsed data to the list
+                            // Add the data to the list
                             importedData.Add((date, units, type));
                         }
                         else
@@ -313,7 +312,7 @@ namespace FileStorage
             return lines[lines.Count-1].units; // Gets the last entry in the list.
         }
         
-        public void Respons(int unitlimit)  // if Current units is less then 50 it will provide a notification.
+        public void Respons(int unitlimit)  // if Current units are less then 50 it will provide a notification.
         {
             if (unitlimit < 50)
             {
@@ -322,7 +321,7 @@ namespace FileStorage
                 Console.ForegroundColor = ConsoleColor.White;
             }
         }
-        public void message() // Calls the event that generates the a notification.
+        public void message() // Calls the event that generates the notification.
         {
             if (Alert != null)
             {
