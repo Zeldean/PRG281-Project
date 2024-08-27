@@ -162,11 +162,11 @@ This class diagram represents the structure of the application, focusing on user
 2. **Core Functionality:** Implement core functionality.
 3. **Program Navigation:** Implement overall program navigation.
 4. **User File Management:** Implement file creation, data storage, and reading methods.
-5. **Power Usage Calculations:** Implement
-
- power usage calculations.
-6. **Menu Structure:** Implement menu structure and interactions.
-7. **Additional Functionality:** Add required additional functionality, such as reports, threads, events, and exception handling.
+5. **Power Usage Calculations:** Implement average usage calculation methods.
+6. **Report Generation:** Implement report generation methods.
+7. **Generate Test Data:** Create entries for testing.
+8. **Testing:** Test the program thoroughly.
+9. **Final Documentation:** Finalize documentation.
 
 ### Task Allocation
 
