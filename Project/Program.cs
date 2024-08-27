@@ -31,7 +31,7 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
         selectUser.AddItem("Add User", () =>
         {
             user.CreateUser();
-            userFiles = user.UserList(); // Update the dictionary after a new user is created.
+            userFiles = user.UserList(); // Update the dictionary after creating a new user.
             DisplayUserSelectionMenu(userFiles, user); // Rebuild the menu with the updated user list.
         });
        
@@ -44,13 +44,12 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                 
                 Notification NewNote = new Notification();
 
-                Thread thr1 = new Thread(() => NewNote.GeneratingNote(user.FilePath)); // a Threads that gets the units of the last entry.
+                Thread thr1 = new Thread(() => NewNote.GeneratingNote(user.FilePath)); // a Threads that get the units of the last entry.
                 NewNote.Alert += Message; // Appends the notification message to the event.
                 Thread thr2 = new Thread(() => NewNote.message()); // Thread 2 Triggers the event.
                 thr1.Start();
                 thr1.Join();
-                thr2.Start();
-                
+                thr2.Start();                
 
                 Menu userItem = new Menu(userFile.Key);
                 userItem.AddItem("New Entry", () =>
@@ -83,19 +82,19 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                     Menu reports = new Menu("Reports");
                     reports.AddItem("Weekly", () =>
                     {
-                        // Logic to genarate a Weekly report
+                        // Logic to generate a Weekly report
                         Calculation calculation = new Calculation(user.FilePath, "Weekly");
                         
                     });
                     reports.AddItem("Monthly", () =>
                     {
-                        // Logic to genarate a Mounthly report
+                        // Logic to generate a Monthly report
                         Calculation calculation = new Calculation(user.FilePath, "Monthly");
                        
                     });
                     reports.AddItem("Yearly", () =>
                     {
-                        // Logic to genarate a Yearly report
+                        // Logic to generate a Yearly report
                         Calculation calculation = new Calculation(user.FilePath, "Yearly");
                         
                     });
@@ -125,16 +124,15 @@ static void UserListDisplay(Dictionary<string, string> userFiles, Menu selectUse
                     });
                     settings.AddItem("Notifications", () =>
                     {
+                        
                         List<(DateTime date, int units, string type)> list = EntryList.ReadUserData(user.FilePath);
                         foreach (var item in list)
                         {
                             if (item.units < 50)
                             {
-                                Console.ForegroundColor = ConsoleColor.Green;
+                                Console.ForegroundColor = ConsoleColor.Green;    //uses a list to store all the entries, then loop through the list to retrieve all the entries with units below 50.
                                 Console.WriteLine(item);
-                                NewNote.message();
-                               
-
+                                NewNote.message(); 
                             }
                         }
                        
